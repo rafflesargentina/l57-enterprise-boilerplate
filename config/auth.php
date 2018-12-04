@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Raffles\User::class,
+            'model' => Raffles\Models\User::class,
         ],
 
         // 'users' => [
