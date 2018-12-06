@@ -1,0 +1,12 @@
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+
+  html {
+    -moz-osx-font-smoothing: auto;
+  }
+}
