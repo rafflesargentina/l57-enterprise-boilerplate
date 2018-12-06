@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d587cfddb43b67d104a9a21568d2468",
+    "content-hash": "605d00d35ff901e617979d231045ab1c",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -1943,6 +1943,62 @@
                 "shell"
             ],
             "time": "2018-10-13T15:16:03+00:00"
+        },
+        {
+            "name": "rafflesargentina/l5-resource-controller",
+            "version": "v1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rafflesargentina/l5-resource-controller.git",
+                "reference": "98164d62309add71f1f9ccb5cd1d2eeca8b53a92"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rafflesargentina/l5-resource-controller/zipball/98164d62309add71f1f9ccb5cd1d2eeca8b53a92",
+                "reference": "98164d62309add71f1f9ccb5cd1d2eeca8b53a92",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.7.*",
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "caffeinated/repository": "^3.4",
+                "orchestra/database": "^3.6",
+                "orchestra/testbench": "^3.7",
+                "phpunit/phpunit": "^7.1",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RafflesArgentina\\ResourceController\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mario Patronelli",
+                    "email": "mario@raffles.com.ar",
+                    "homepage": "http://raffles.com.ar",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Resource Controller for Laravel 5",
+            "homepage": "https://github.com/rafflesargentina/l5-resource-controller",
+            "keywords": [
+                "laravel 5",
+                "resource controller"
+            ],
+            "time": "2018-12-06T23:34:50+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
