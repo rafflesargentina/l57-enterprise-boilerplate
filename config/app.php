@@ -171,7 +171,7 @@ return [
          */
         Raffles\Providers\AppServiceProvider::class,
         Raffles\Providers\AuthServiceProvider::class,
-        // Raffles\Providers\BroadcastServiceProvider::class,
+        Raffles\Providers\BroadcastServiceProvider::class,
         Raffles\Providers\EventServiceProvider::class,
         Raffles\Providers\RouteServiceProvider::class,
 
