@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \Raffles\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Raffles\Http\Middleware\TrustProxies::class,
+        \Raffles\Http\Middleware\ParseMultipartFormDataInputForNonPostRequests::class,
     ];
 
     /**
