@@ -60,6 +60,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'client' => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
         'guest' => \Raffles\Http\Middleware\RedirectIfAuthenticated::class,
+        'has.role' => \Caffeinated\Shinobi\Middleware\UserHasRole::class,
+        'has.permission' => \Caffeinated\Shinobi\Middleware\UserHasPermission::class,
         'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
         'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
