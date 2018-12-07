@@ -13,7 +13,8 @@
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
-        "rafflesargentina/l5-resource-controller": "^1.7"
+        "rafflesargentina/l5-resource-controller": "^1.7",
+        "squizlabs/php_codesniffer": "^3.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
