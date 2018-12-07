@@ -18,3 +18,13 @@ mix.copy('resources/img/', 'public/img/')
 if (mix.inProduction()) {
     mix.version()
 }
+
+const path = require('path')
+
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            '@': path.resolve('resources/js')
+        }
+    }
+})
