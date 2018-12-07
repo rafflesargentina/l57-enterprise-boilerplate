@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1369ee6cd1dad1fe4426dd55881d0eda",
+    "content-hash": "95cc4ad045d471cca022f2b3ca5ca4f6",
     "packages": [
+        {
+            "name": "caffeinated/repository",
+            "version": "v3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caffeinated/repository.git",
+                "reference": "697718c3084910e81efabb36a9435347a3984754"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caffeinated/repository/zipball/697718c3084910e81efabb36a9435347a3984754",
+                "reference": "697718c3084910e81efabb36a9435347a3984754",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.4.*|5.5.*|5.6.*|5.7.*",
+                "illuminate/support": "5.4.*|5.5.*|5.6.*|5.7.*",
+                "php": ">=7.1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Caffeinated\\Repository\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shea Lewis",
+                    "email": "shea.lewis89@gmail.com"
+                }
+            ],
+            "description": "Reusable Laravel repository interface.",
+            "keywords": [
+                "caffeinated",
+                "eloquent",
+                "laravel",
+                "repository"
+            ],
+            "time": "2018-09-06T23:02:46+00:00"
+        },
         {
             "name": "caffeinated/shinobi",
             "version": "v3.3",
