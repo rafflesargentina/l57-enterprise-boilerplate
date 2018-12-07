@@ -5,9 +5,12 @@ namespace Raffles\Http\Controllers\Auth;
 use Raffles\Models\User;
 use Raffles\Http\Controllers\Controller;
 
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use RafflesArgentina\ResourceController\Traits\FormatsValidJsonResponses;
 
 class RegisterController extends Controller
 {
@@ -22,14 +25,14 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use FormatsValidJsonResponses, RegistersUsers;
 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -42,32 +45,66 @@ class RegisterController extends Controller
     }
 
     /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        if ($request->wantsJson()) {
+            try {
+                $token = $user->createToken(env('APP_NAME'));
+                $accessToken = $token->accessToken;
+            } catch (\Exception $e) {
+                return $this->validInternalServerErrorJsonResponse($e, $e->getMessage());
+            }
+
+            return $this->registered($request, $user)
+                        ?: $this->validSuccessJsonResponse('Success', ['token' => $accessToken], $this->redirectPath());
+        }
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        return Validator::make(
+            $data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            ]
+        );
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Raffles\Models\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        return User::create(
+            [
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+            ]
+        );
     }
 }
