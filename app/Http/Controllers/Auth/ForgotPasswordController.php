@@ -5,6 +5,7 @@ namespace Raffles\Http\Controllers\Auth;
 use Raffles\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use RafflesArgentina\ResourceController\Traits\FormatsValidJsonResponses;
 
@@ -21,7 +22,14 @@ class ForgotPasswordController extends Controller
     |
     */
 
-    use FormatsValidJsonResponses, SendsPasswordResetEmails;
+    use FormatsValidJsonResponses, RedirectsUsers, SendsPasswordResetEmails;
+
+    /**
+     * Where to redirect users after requesting their password reset.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -42,7 +50,7 @@ class ForgotPasswordController extends Controller
     protected function sendResetLinkResponse($response)
     {
         if (request()->wantsJson()) {
-            return $this->validSuccessJsonResponse(trans($response));
+            return $this->validSuccessJsonResponse(trans($response), [], $this->redirectPath());
         }
 
         return back()->with('status', trans($response));
