@@ -10,6 +10,9 @@ require("./bootstrap")
 import store from "@/store"
 import router from "@/router"
 import Vue from "vue"
+import Snotify from "vue-snotify"
+
+Vue.use(Snotify)
 
 // Don't warn about using the dev version of Vue in development
 Vue.config.productionTip = process.env.NODE_ENV === "production"
@@ -32,11 +35,10 @@ files.keys().map(key => Vue.component(key.split("/").pop().split(".")[0], files(
  */
 
 const app = new Vue({
-    el: "#app",
-    //render: (h) => h(require("./App.vue")),
+    //el: "#app",
+    render: (h) => h(require("./App.vue")),
     router,
     store
-})
-//.$mount("#app")
+}).$mount("#app")
 
 export default app
