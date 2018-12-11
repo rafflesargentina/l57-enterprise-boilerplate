@@ -60,11 +60,9 @@ class ResetPasswordController extends Controller
 
         event(new PasswordReset($user));
 
-        if (request()->wantsJson()) {
-            return $this->validSuccessJsonResponse('Success');
+        if (!request()->wantsJson()) {
+            $this->guard()->login($user);
         }
-
-        $this->guard()->login($user);
     }
 
     /**
@@ -76,7 +74,7 @@ class ResetPasswordController extends Controller
     protected function sendResetResponse($response)
     {
         if (request()->wantsJson()) {
-            return $this->validSuccessJsonResponse(trans($response), $this->redirectPath());
+            return $this->validSuccessJsonResponse(trans($response), [], $this->redirectPath());
         }
 
         return redirect($this->redirectPath())
