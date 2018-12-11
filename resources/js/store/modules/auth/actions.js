@@ -11,21 +11,28 @@ export default {
     login ({ commit, dispatch, getters }, response) {
         if (getters.isAuthenticated) return dispatch("validate")
 
-        const token = response.token
+        const token = response.data.token
         commit(types.AUTH_TOKEN, token)
 
-        const user = response.user
+        const user = response.data.user
         commit(types.AUTH_USER, user)
 
         return response
     },
 
-    logout () {
+    logout ({ commit }) {
         unsetDefaultAuthHeaders()
         deleteSavedState("auth.token")
         deleteSavedState("auth.user")
 
+        commit(types.AUTH_RESET)
+
         return true
+    },
+
+    reset ({ commit }) {
+        commit(types.AUTH_RESET)
+        return null
     },
 
     validate ({ commit, dispatch, state }) {
