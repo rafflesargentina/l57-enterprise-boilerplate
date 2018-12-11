@@ -64,8 +64,13 @@ class RegisterController extends Controller
                 return $this->validInternalServerErrorJsonResponse($e, $e->getMessage());
             }
 
+            $data = [
+                'token' => $accessToken,
+                'user' => $user
+            ];
+
             return $this->registered($request, $user)
-                        ?: $this->validSuccessJsonResponse('Success', ['token' => $accessToken], $this->redirectPath());
+                        ?: $this->validSuccessJsonResponse('Success', $data, $this->redirectPath());
         }
 
         $this->guard()->login($user);
@@ -84,8 +89,9 @@ class RegisterController extends Controller
     {
         return Validator::make(
             $data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'accepted' => 'accepted',
+            'email' => 'required|string|email|unique:users',
+            'first_name' => 'required|string',
             'password' => 'required|string|min:6|confirmed',
             ]
         );
@@ -101,8 +107,8 @@ class RegisterController extends Controller
     {
         return User::create(
             [
-            'name' => $data['name'],
             'email' => $data['email'],
+            'first_name' => $data['first_name'],
             'password' => Hash::make($data['password']),
             ]
         );
