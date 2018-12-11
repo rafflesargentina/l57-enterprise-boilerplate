@@ -13,6 +13,13 @@ class ContactController extends Controller
     use FormatsValidJsonResponses;
 
     /**
+     * Where to redirect users after submitting the contact form.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/';
+
+    /**
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request $request
@@ -35,6 +42,6 @@ class ContactController extends Controller
             return $this->validInternalServerErrorJsonResponse($e, $e->getMessage());
         }
 
-        return $this->validSuccessJsonResponse('Success');
+        return $this->validSuccessJsonResponse('Success', [], $this->redirectPath());
     }
 }
