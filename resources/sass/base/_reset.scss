@@ -1,4 +1,8 @@
 
+body {
+  background-color: $card-border-color;
+}
+
 html {
   -moz-osx-font-smoothing: grayscale;
 }
@@ -8,5 +12,21 @@ html {
 
   html {
     -moz-osx-font-smoothing: auto;
+  }
+}
+
+main,
+section {
+  padding: 1rem;
+}
+
+.full-height {
+  height: calc(100vh - #{$header-height});
+}
+
+@include media-breakpoint-up(sm) {
+  main,
+  section {
+    padding: 3%;
   }
 }

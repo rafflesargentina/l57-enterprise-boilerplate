@@ -1,4 +1,110 @@
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.page-header {
+  height: $header-height;
+  padding: 0.5rem 2rem;
+  position: relative;
+  width: 100%;
+  z-index: $zindex-dropdown;
+
+  &--dark {
+    background-color: $black;
+    color: $gray-400;
+  }
+
+  &--light {
+    background-color: $white;
+    color: $gray-600;
+  }
+
+  &-logo {
+    //background-image: url('/img/logo.svg');
+    background-position: center left;
+    background-repeat: no-repeat;
+    background-size: 8rem auto;
+    color: inherit;
+    height: 3rem;
+    font-size: $h4-font-size;
+    line-height: 3rem;
+    text-decoration: none;
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.main-nav {
+  white-space: nowrap;
+  &__icon {
+    font-size: 2rem;
+    line-height: inherit;
+  }
+
+  &__item {
+    display: block;
+    font-size: $font-size-lg;
+    padding: 0 1rem;
+    font-weight: normal;
+    line-height: 3rem;
+  }
+
+  &__item--dark {
+    color: $gray-400;
+  }
+
+  &__item--light {
+    color: $gray-600;
+  }
+
+  &__link {
+    color: inherit;
+    cursor: pointer;
+    padding: 0.25rem 0;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__link--dark {
+    &:hover {
+      color: $white;
+    }
+    &.router-link-exact-active {
+      border-bottom: 2px solid $white;
+    }
+  }
+
+  &__link--light {
+    &:hover {
+      color: $gray-800;
+    }
+    &.router-link-exact-active {
+      border-bottom: 2px solid $gray-800;
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  &-menu {
+    background-color: $gray-800;
+    left: 0;
+    padding: 5%;
+    position: absolute;
+    top: $header-height;
+    width: 100%;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .main-nav {
+    &__item {
+      display: inline-block;
+      font-size: $font-size-base;
+    }
+  }
 }

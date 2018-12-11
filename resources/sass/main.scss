@@ -5,7 +5,12 @@
   'abstracts/placeholders';
 
 @import
-  'vendors/bootstrap';
+  'vendors/bootstrap',
+  'vendors/font-awesome',
+  'vendors/vue-snotify';
+
+@import
+  'vendors-extensions/bootstrap';
 
 @import
   'base/reset',
@@ -26,6 +31,7 @@
   'components/dropdown';
 
 @import
+  'pages/auth',
   'pages/home',
   'pages/contact';
 
