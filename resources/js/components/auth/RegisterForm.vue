@@ -220,11 +220,13 @@ export default {
         register() {
             this.submitted = true
 
+            let redirect
             this.form[this.method](this.action).then(response => {
-                return this.$store.dispatch("auth/login", response.data)
+                redirect = response.redirect
+                return this.$store.dispatch("auth/login", response)
             }).then(()=> {
                 this.$snotify.success("Fuiste registrado correctamente.")
-                return this.$router.push({ path: response.redirect || "/" })
+                return this.$router.push({ path: redirect })
             }).catch(error => {
                 this.submitted = false
                 if (error.status > 422) {

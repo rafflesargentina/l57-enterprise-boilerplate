@@ -186,7 +186,7 @@ export default {
                             }
                         })
 
-                        return this.$router.push({ path: response.redirect || "/" })
+                        return this.$router.push({ path: response.redirect })
                     })
                     .catch(error => {
                         this.submitted = false

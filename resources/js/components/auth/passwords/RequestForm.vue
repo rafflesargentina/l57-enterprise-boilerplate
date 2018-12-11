@@ -80,7 +80,7 @@ export default {
                                 timeout: 5000
                             }
                         }) 
-                        return this.$router.push({ path: response.redirect || "/" })
+                        return this.$router.push({ path: response.redirect })
                     })
                     .catch(error => {
                         this.submitted = false

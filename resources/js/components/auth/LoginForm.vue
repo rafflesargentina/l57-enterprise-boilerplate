@@ -133,7 +133,7 @@ export default {
                 })
                 .then(response => {
                     let intended = this.$route.query.intended
-                    let redirect = intended || response.redirect || "/"
+                    let redirect = intended || response.redirect
                     return this.$router.push({ path: redirect })
                 })
                 .catch(()=> {
