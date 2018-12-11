@@ -20,7 +20,7 @@
             href="https://www.argentina.gob.ar/defensadelconsumidor"
             target="_blank">Defensa del Consumidor</a>
     </div>
-    <div class="page-footer__copyright">&copy; Laravel 5.6</div>
+    <div class="page-footer__copyright">&copy; Laravel 5.7</div>
   </footer>
 </template>
 

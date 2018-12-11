@@ -5,7 +5,7 @@
         href="/"
         class="col-9 col-lg-3 page-header-logo"
       >
-        Laravel 5.6
+        Laravel 5.7
       </a>
 
       <nav class="col-lg-6 main-nav d-none d-lg-inline-block">
