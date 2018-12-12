@@ -2,6 +2,8 @@
 
 namespace Raffles\Models;
 
+use Raffles\Models\Traits\UserTrait;
+
 use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -10,7 +12,16 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, ShinobiTrait;
+    use HasApiTokens, Notifiable, ShinobiTrait, UserTrait;
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'name'
+    ];
 
     /**
      * The attributes that are mass assignable.
