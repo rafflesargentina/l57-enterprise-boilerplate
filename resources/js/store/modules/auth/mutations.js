@@ -9,7 +9,7 @@ export default {
     },
 
     [types.AUTH_RESET] (state) {
-        state = Object.assign(state, { initialState: initialState(), ...initialState() })
+        Object.assign(state, { initialState: initialState(), ...initialState() })
     },
 
     [types.AUTH_TOKEN] (state, payload) {

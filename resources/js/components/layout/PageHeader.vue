@@ -72,6 +72,28 @@
               REGISTRATE
             </RouterLink>
           </li>
+          <li
+            v-if="isAuthenticated"
+            class="main-nav__item main-nav__item--dark"
+          >
+            <RouterLink
+              to="/account"
+              class="main-nav__link main-nav__link--dark"
+            >
+              CUENTA
+            </RouterLink>
+          </li>
+          <li
+            v-if="isAuthenticated"
+            class="main-nav__item main-nav__item--dark"
+          >
+            <RouterLink
+              to="/logout"
+              class="main-nav__link main-nav__link--dark"
+            >
+              CERRAR SESIÓN
+            </RouterLink>
+          </li>
         </ul>
       </nav>
 
@@ -170,10 +192,10 @@ export default {
 
     mounted() {
         return document.addEventListener("click", function(e) {
-	        if (e.target.closest("#mainNavMenu")) return;
+            if (e.target.closest("#mainNavMenu")) return
 
-	        window.$("#mainNavMenu").collapse("hide")
-        });
+            window.$("#mainNavMenu").collapse("hide")
+        })
     }
 }
 </script>

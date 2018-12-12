@@ -145,13 +145,6 @@ export default {
 
     name: "ContactForm",
 
-    data() {
-        return {
-            form: new Form(fields),
-            submitted: false
-        }
-    },
-
     props: {
         action: {
             type: String,
@@ -161,6 +154,13 @@ export default {
         method: {
             type: String,
             required: true
+        }
+    },
+
+    data() {
+        return {
+            form: new Form(fields),
+            submitted: false
         }
     },
 
@@ -202,7 +202,7 @@ export default {
                             }
                         })
                     })
-                })
+            })
             )
         },
     },

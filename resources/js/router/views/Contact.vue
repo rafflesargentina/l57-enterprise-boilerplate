@@ -6,7 +6,10 @@
           <h4 class="contact-header">
             Envianos un mensaje
           </h4>
-          <ContactForm :action="'/contact'" :method="'post'" />
+          <ContactForm
+            :action="'/contact'"
+            :method="'post'"
+          />
         </section>
       </main>
     </div>
