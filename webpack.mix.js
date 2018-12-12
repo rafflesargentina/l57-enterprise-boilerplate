@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -14,6 +14,9 @@ let mix = require('laravel-mix');
 mix.copy('resources/img/', 'public/img/')
     .js('resources/js/app.js', 'public/js')
     .sass('resources/sass/main.scss', 'public/css/app.css')
+    .postCss('public/css/app.css', 'public/css/app.css', [
+        require('autoprefixer')
+    ])
 
 if (mix.inProduction()) {
     mix.version()

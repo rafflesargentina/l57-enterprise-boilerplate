@@ -1,43 +1,43 @@
 @import
-  'abstracts/variables',
-  'abstracts/functions',
-  'abstracts/mixins',
-  'abstracts/placeholders';
+'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins',
+'abstracts/placeholders';
 
 @import
-  'vendors/bootstrap',
-  'vendors/font-awesome',
-  'vendors/vue-snotify';
+'vendors/bootstrap',
+'vendors/font-awesome',
+'vendors/vue-snotify';
 
 @import
-  'vendors-extensions/bootstrap';
+'vendors-extensions/bootstrap';
 
 @import
-  'base/reset',
-  'base/typography';
+'base/reset',
+'base/typography';
 
 @import
-  'layout/navigation',
-  'layout/grid',
-  'layout/header',
-  'layout/footer',
-  'layout/sidebar',
-  'layout/forms';
+'layout/navigation',
+'layout/grid',
+'layout/header',
+'layout/footer',
+'layout/sidebar',
+'layout/forms';
 
 @import
-  'components/buttons',
-  'components/carousel',
-  'components/cover',
-  'components/dropdown';
+'components/buttons',
+'components/carousel',
+'components/cover',
+'components/dropdown';
 
 @import
-  'pages/auth',
-  'pages/home',
-  'pages/contact';
+'pages/auth',
+'pages/home',
+'pages/contact';
 
 @import
-  'themes/default',
-  'themes/admin';
+'themes/default',
+'themes/admin';
 
 @import
-  'shame';
+'shame';

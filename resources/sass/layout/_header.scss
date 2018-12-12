@@ -1,30 +1,30 @@
 .page-header {
-  height: $header-height;
-  padding: 0.5rem 2rem;
-  position: relative;
-  width: 100%;
   z-index: $zindex-dropdown;
+  width: 100%;
+  position: relative;
+  padding: 0.5rem 2rem;
+  height: $header-height;
 
   &--dark {
-    background-color: $black;
     color: $gray-400;
+    background-color: $black;
   }
 
   &--light {
-    background-color: $white;
     color: $gray-600;
+    background-color: $white;
   }
 
   &-logo {
     //background-image: url('/img/logo.svg');
-    background-position: center left;
-    background-repeat: no-repeat;
-    background-size: 8rem auto;
-    color: inherit;
-    height: 3rem;
-    font-size: $h4-font-size;
-    line-height: 3rem;
     text-decoration: none;
+    line-height: 3rem;
+    font-size: $h4-font-size;
+    height: 3rem;
+    color: inherit;
+    background-size: 8rem auto;
+    background-repeat: no-repeat;
+    background-position: center left;
     &:focus,
     &:hover {
       text-decoration: none;
@@ -35,16 +35,16 @@
 .main-nav {
   white-space: nowrap;
   &__icon {
-    font-size: 2rem;
     line-height: inherit;
+    font-size: 2rem;
   }
 
   &__item {
     display: block;
-    font-size: $font-size-lg;
-    padding: 0 1rem;
-    font-weight: normal;
     line-height: 3rem;
+    font-weight: normal;
+    padding: 0 1rem;
+    font-size: $font-size-lg;
   }
 
   &__item--dark {
@@ -56,10 +56,10 @@
   }
 
   &__link {
-    color: inherit;
-    cursor: pointer;
-    padding: 0.25rem 0;
     text-decoration: none;
+    padding: 0.25rem 0;
+    cursor: pointer;
+    color: inherit;
     &:hover {
       text-decoration: none;
     }
@@ -84,19 +84,19 @@
   }
 
   &__list {
-    list-style-type: none;
     margin: 0;
-    padding: 0;
     text-align: center;
+    padding: 0;
+    list-style-type: none;
   }
 
   &-menu {
-    background-color: $gray-800;
-    left: 0;
-    padding: 5%;
-    position: absolute;
-    top: $header-height;
     width: 100%;
+    top: $header-height;
+    position: absolute;
+    padding: 5%;
+    left: 0;
+    background-color: $gray-800;
   }
 }
 
