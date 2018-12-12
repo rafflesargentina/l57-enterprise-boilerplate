@@ -13,8 +13,10 @@
     "sass-lint": "./node_modules/.bin/sass-lint -c sass-lint.yml -q -v"
   },
   "devDependencies": {
+    "autoprefixer": "^9.4.2",
     "axios": "^0.18",
     "bootstrap": "^4.0.0",
+    "browserslist": "^4.3.5",
     "cross-env": "^5.1",
     "eslint": "^5.9.0",
     "eslint-config-standard": "^12.0.0",
@@ -36,5 +38,10 @@
     "vue-snotify": "^3.2.1",
     "vue-socket.io": "^3.0.4",
     "vuex": "^3.0.1"
-  }
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "IE 10"
+  ]
 }
