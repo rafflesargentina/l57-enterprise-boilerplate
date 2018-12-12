@@ -6,6 +6,18 @@ Vue.use(VueRouter)
 
 const routes = [
     {
+        children: [
+            {
+                beforeEnter: middleware.authRequired,
+                name: "Account",
+                path: "",
+                component: require("@/router/views/Account/PersonalData.vue")
+            }
+        ],
+        component: require("@/router/views/Account/Account.vue"),
+        path: "/account"
+    },
+    {
         component: require("@/router/views/Home.vue"),
         name: "Home",
         path: "/"
@@ -26,7 +38,7 @@ const routes = [
     },
     {
         component: require("@/router/views/auth/Logout.vue"),
-        meta: {
+        meta: {
             footer: false,
         },
         name: "Logout",

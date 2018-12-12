@@ -2,7 +2,7 @@
   <div id="app">
     <PageHeader />
     <RouterView />
-    <VueSnotify />
+    <vue-snotify />
     <PageFooter v-if="false !== $route.meta.footer" />
   </div>
 </template>

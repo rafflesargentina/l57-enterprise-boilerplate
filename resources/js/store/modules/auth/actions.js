@@ -38,9 +38,9 @@ export default {
     validate ({ commit, dispatch, state }) {
         if (!state.user) return null
 
-        return axios.get("/api/user")
+        return axios.get("/api/account")
             .then(response => {
-                const user = response.data
+                const user = response.data.data.user
                 commit(types.AUTH_USER, user)
                 return user
             })
