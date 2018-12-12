@@ -13,13 +13,15 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Raffles\Models\User::class, function (Faker $faker) {
-    return [
+$factory->define(
+    Raffles\Models\User::class, function (Faker $faker) {
+        return [
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'password' => $faker->password,
         'remember_token' => str_random(10),
-    ];
-});
+        ];
+    }
+);

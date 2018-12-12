@@ -13,17 +13,19 @@ class CreatePhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('slug')->nullable();
-            $table->unsignedInteger('photoable_id')->nullable();
-            $table->string('photoable_type')->nullable();
-            $table->string('location');
-            $table->string('name')->nullable();
-            $table->text('description')->nullable();
-            $table->boolean('featured')->nullable()->default(0);
-            $table->timestamps();
-        });
+        Schema::create(
+            'photos', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('slug')->nullable();
+                $table->unsignedInteger('photoable_id')->nullable();
+                $table->string('photoable_type')->nullable();
+                $table->string('location');
+                $table->string('name')->nullable();
+                $table->text('description')->nullable();
+                $table->boolean('featured')->nullable()->default(0);
+                $table->timestamps();
+            }
+        );
     }
 
     /**
