@@ -11,9 +11,11 @@
 |
 */
 
-Route::middleware('auth:api')->group(function() {
-    Route::apiResource('avatars', 'AvatarController', ['only' => ['show', 'update']]);
+Route::middleware('auth:api')->group(
+    function () {
+        Route::apiResource('avatars', 'AvatarController', ['only' => ['show', 'update']]);
 
-    Route::get('account', 'AccountController');
-    Route::put('account', 'UpdateAccountController');
-});
+        Route::get('account', 'AccountController');
+        Route::put('account', 'UpdateAccountController');
+    }
+);
