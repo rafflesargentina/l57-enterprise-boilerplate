@@ -40,4 +40,27 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = 'avatar';
+
+    /**
+     * Get the user's featured photo.
+     */
+    public function avatar()
+    {
+        return $this->morphOne(FeaturedPhoto::class, 'photoable');
+    }
+
+    /**
+     * Get the user's photos.
+     */
+    public function photos()
+    {
+        return $this->morphMany(Photo::class, 'photoable');
+    }
 }
