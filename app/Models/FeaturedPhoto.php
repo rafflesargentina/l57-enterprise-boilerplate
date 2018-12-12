@@ -13,9 +13,11 @@ class FeaturedPhoto extends Photo
     {
         parent::boot();
 
-        static::creating(function($model) {
-            $model->featured = 1;
-        });
+        static::creating(
+            function ($model) {
+                $model->featured = 1;
+            }
+        );
     }
 
     /**
