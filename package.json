@@ -14,7 +14,6 @@
     "sass-lint:fix": "./node_modules/.bin/sass-lint-auto-fix -c .sass-lint.yml"
   },
   "devDependencies": {
-    "autoprefixer": "^9.4.2",
     "axios": "^0.18",
     "bootstrap": "^4.0.0",
     "browserslist": "^4.3.5",
