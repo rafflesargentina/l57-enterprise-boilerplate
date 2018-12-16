@@ -279,7 +279,6 @@ export default {
                 maxFiles: 1,
                 maxFilesize: 0.2,
                 method: "put",
-                params: { avatar: { 0: { featured: 1 } } },
                 paramName: "avatar",
                 uploadMultiple: true,
                 url: "/api/avatars"
