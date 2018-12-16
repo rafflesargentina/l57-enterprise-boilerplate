@@ -63,7 +63,8 @@ class LoginController extends Controller
                 'user' => $user
             ];
 
-            return $this->validSuccessJsonResponse('Success', $data, $this->redirectPath());
+            return $this->authenticated($request, $this->guard()->user())
+                    ?:  $this->validSuccessJsonResponse('Success', $data, $this->redirectPath());
         }
 
         $request->session()->regenerate();
