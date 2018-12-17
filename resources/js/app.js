@@ -35,6 +35,27 @@ files.keys().map(key => Vue.component(key.split("/").pop().split(".")[0], files(
  */
 
 const app = new Vue({
+    created() {
+        axios.interceptors.response.use(null, (error)=> {
+            let code = error.response.status
+            if (error.config && !error.config.__isRetryRequest) {
+                if (code > 404 && code < 420) {
+                    switch (code) {
+                        case 419:
+                            this.$snotify.info("Tu sesión expiró. Por favor volvé a ingresar con tus credenciales.")
+                            break
+                        default:
+                            this.$snotify.error("Ocurrió un error inesperado en la sesión de tu usuario. Por favor volvé a ingresar con tus credenciales.")
+                    }
+                } else if (code === 500) {
+                    router.push({ name: "InternalServerError" })
+                }
+            }
+
+            return Promise.reject(error)
+        })
+    },
+
     //el: "#app",
     render: (h) => h(require("./App.vue")),
     router,
