@@ -21,7 +21,7 @@ section {
 }
 
 .full-height {
-  height: calc(100vh - #{$header-height});
+  min-height: calc(100vh - #{$header-height});
 }
 
 @include media-breakpoint-up(sm) {
