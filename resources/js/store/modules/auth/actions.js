@@ -1,6 +1,7 @@
 import { deleteSavedState } from "@/utilities/helpers"
 import * as types from "../../mutation-types"
 import axios from "axios"
+import route from "@/router"
 
 export default {
     init({ commit, dispatch, state }) {
@@ -27,7 +28,8 @@ export default {
 
         commit(types.AUTH_RESET)
 
-        return true
+        return axios.post("/logout")
+            .then(response => router.push({ path: response.data.redirect }))
     },
 
     reset ({ commit }) {
@@ -48,7 +50,7 @@ export default {
                 commit(types.AUTH_ERROR, error)
 
                 if (error.response.status === 401) {
-                    return dispatch("logout")
+                    dispatch("logout")
                 }
 
                 return error

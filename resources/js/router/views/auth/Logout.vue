@@ -9,13 +9,7 @@
 <script>
 export default {
     mounted() {
-        let a = window.axios.post("/logout"),
-            b = this.$store.dispatch("auth/logout")
-
-        return Promise.all([a,b])
-            .then(values => {
-                return this.$router.push({ path: values[0].data.redirect })
-            })
+        return this.$store.dispatch("auth/logout")
     }
 }
 </script>
