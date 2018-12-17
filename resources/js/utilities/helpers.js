@@ -10,12 +10,18 @@ export function getSavedState(key) {
     var local = window.localStorage.getItem(key)
     var session = window.sessionStorage.getItem(key)
 
-    if (local) {
-        return JSON.parse(local)
-    }
+    try {
+        if (local) {
+            return JSON.parse(local)
+        }
 
-    if (session) {
-        return JSON.parse(session)
+        if (session) {
+            return JSON.parse(session)
+        }
+
+    // Handle malformed state.
+    } catch (e) {
+        return null
     }
 
     return null
