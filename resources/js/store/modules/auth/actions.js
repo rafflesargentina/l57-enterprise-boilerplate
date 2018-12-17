@@ -47,12 +47,15 @@ export default {
                 return user
             })
             .catch(error => {
-                commit(types.AUTH_ERROR, error)
+                dispatch("logout")
 
-                if (error.response.status === 401) {
-                    dispatch("logout")
+                if (undefined !== error.response) {
+                    let data = error.response.data
+                    commit(types.AUTH_ERROR, data)
+                    return data
                 }
 
+                commit(types.AUTH_ERROR, error)
                 return error
             })
     },
