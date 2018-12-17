@@ -71,6 +71,21 @@ const routes = [
         name: "PasswordReset",
         path: "/password/reset/:token"
     },
+    {
+        name: "InternalServerError",
+        path: "/sorry",
+        component: require("@/router/views/Errors/InternalServerError")
+    },
+    {
+        name: "Unauthorized",
+        path: "/unauthorized",
+        component: require("@/router/views/Errors/Unauthorized")
+    },
+    {
+        name: "PageNotFound",
+        path: "*",
+        component: require("@/router/views/Errors/PageNotFound")
+    },
 ]
 
 export default new VueRouter({

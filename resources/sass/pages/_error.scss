@@ -1,0 +1,18 @@
+.error_page {
+  &-inner {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1024px;
+    @include clearfix;
+  }
+
+  &-section {
+    padding: 12%;
+  }
+
+  &__p {
+    font-size: $font-size-lg;
+    line-height: 1.8;
+    text-align: justify;
+  }
+}
