@@ -109,6 +109,7 @@
               <input
                 v-model="form.email"
                 :class="{ 'is-invalid': form.errors.has('email') }"
+                autocomplete="username"
                 type="email"
                 class="form-control"
                 name="email"
@@ -134,6 +135,7 @@
               <input
                 v-model="form.password"
                 :class="{ 'is-invalid': form.errors.has('password') }"
+                autocomplete="current-password"
                 type="password"
                 class="form-control"
                 name="password"
@@ -159,6 +161,7 @@
               <input
                 v-model="form.password_confirmation"
                 :class="{ 'is-invalid': form.errors.has('password_confirmation') }"
+                autocomplete="current-password"
                 type="password"
                 class="form-control"
                 name="password_confirmation"

@@ -68,6 +68,7 @@
       <input 
         v-model="form.email" 
         :class="{ 'is-invalid': form.errors.has('email') }"
+        autocomplete="username"
         class="form-control form-control-lg" 
         name="email"
         placeholder="Email"
@@ -93,6 +94,7 @@
       <input 
         v-model="form.password" 
         :class="{ 'is-invalid': form.errors.has('password') }"
+        autocomplete="new-password"
         class="form-control form-control-lg" 
         name="password"
         placeholder="Contraseña"
@@ -118,6 +120,7 @@
       <input 
         v-model="form.password_confirmation" 
         :class="{ 'is-invalid': form.errors.has('password_confirmation') }"
+        autocomplete="new-password"
         class="form-control form-control-lg" 
         name="password_confirmation"
         placeholder="Confirmación de contraseña"
