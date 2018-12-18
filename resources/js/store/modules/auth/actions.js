@@ -1,7 +1,7 @@
 import { deleteSavedState } from "@/utilities/helpers"
 import * as types from "../../mutation-types"
 import axios from "axios"
-import route from "@/router"
+import router from "@/router"
 
 export default {
     init({ commit, dispatch, state }) {
