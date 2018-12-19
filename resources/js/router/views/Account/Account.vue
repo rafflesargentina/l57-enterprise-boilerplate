@@ -34,6 +34,30 @@
               Datos Personales
             </RouterLink>
           </li>
+          <li class="sidebar-nav__item sidebar-nav__item--dark">
+            <RouterLink
+              to="/account/personal-tokens"
+              class="sidebar-nav__link sidebar-nav__link--dark"
+            >
+              Tokens Personales
+            </RouterLink>
+          </li>
+          <li class="sidebar-nav__item sidebar-nav__item--dark">
+            <RouterLink
+              to="/account/client-tokens"
+              class="sidebar-nav__link sidebar-nav__link--dark"
+            >
+              Tokens de Clientes OAUTH
+            </RouterLink>
+          </li>
+          <li class="sidebar-nav__item sidebar-nav__item--dark">
+            <RouterLink
+              to="/account/authorized-client-tokens"
+              class="sidebar-nav__link sidebar-nav__link--dark"
+            >
+              Tokens de Clientes Autorizados
+            </RouterLink>
+          </li>
         </ul>
       </nav>
     </aside>

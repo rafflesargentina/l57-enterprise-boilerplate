@@ -11,7 +11,7 @@
         <div class="card-header">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <span>
-              Personal Access Tokens
+              Tokens Personales
             </span>
 
             <a
@@ -19,7 +19,7 @@
               tabindex="-1"
               @click="showCreateTokenForm"
             >
-              Create New Token
+              <span class="fa fa-plus pr-2" />Crear Nuevo
             </a>
           </div>
         </div>
@@ -30,7 +30,7 @@
             v-if="tokens.length === 0"
             class="mb-0"
           >
-            You have not created any personal access tokens.
+            No hay creado ningun token de acceso personal para tu usuario.
           </p>
 
           <!-- Personal Access Tokens -->
@@ -40,7 +40,7 @@
           >
             <thead>
               <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <th />
               </tr>
             </thead>
@@ -61,7 +61,7 @@
                     class="action-link text-danger"
                     @click="revoke(token)"
                   >
-                    Delete
+                    <span class="fa fa-trash pr-2" />Borrar
                   </a>
                 </td>
               </tr>
@@ -82,7 +82,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">
-              Create Token
+              Nuevo Token de Acceso Personal
             </h4>
 
             <button
@@ -102,9 +102,8 @@
               class="alert alert-danger"
             >
               <p class="mb-0">
-                <strong>Whoops!</strong> Something went wrong!
+                <strong>Ocurrió un error con el siguiente mensaje:</strong>
               </p>
-              <br>
               <ul>
                 <li
                   v-for="error in form.errors"
@@ -123,7 +122,7 @@
               <!-- Name -->
               <div class="form-group row">
                 <label class="col-md-4 col-form-label">
-                  Name
+                  Nombre
                 </label>
 
                 <div class="col-md-6">
@@ -143,7 +142,7 @@
                 class="form-group row"
               >
                 <label class="col-md-4 col-form-label">
-                  Scopes
+                  Alcances
                 </label>
 
                 <div class="col-md-6">
@@ -175,7 +174,7 @@
               class="btn btn-secondary"
               data-dismiss="modal"
             >
-              Close
+              <span class="fa fa-times pr-2" />Cancelar
             </button>
 
             <button
@@ -183,7 +182,7 @@
               class="btn btn-primary"
               @click="store"
             >
-              Create
+              <span class="fa fa-check pr-2" />Crear
             </button>
           </div>
         </div>
@@ -201,7 +200,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">
-              Personal Access Token
+              Token de Acceso Personal
             </h4>
 
             <button
@@ -216,8 +215,8 @@
 
           <div class="modal-body">
             <p>
-              Here is your new personal access token. This is the only time it will be shown so don't lose it!
-              You may now use this token to make API requests.
+              Este es tu nuevo token de acceso personal. Esta va a ser la única vez que se muestre ¡así que no lo pierdas!
+              Ahora podés usar este token para realizar solicitudes API.
             </p>
 
             <textarea
@@ -234,7 +233,7 @@
               class="btn btn-secondary"
               data-dismiss="modal"
             >
-              Close
+              <span class="fa fa-times pr-2" />Cerrar
             </button>
           </div>
         </div>
@@ -287,6 +286,13 @@ export default {
         prepareComponent() {
             this.getTokens()
             this.getScopes()
+
+            let body = document.querySelector("body"),
+                modalAccessToken = document.querySelector("#modal-access-token"),
+                modalCreateToken = document.querySelector("#modal-create-token")
+
+            body.appendChild(modalAccessToken)
+            body.appendChild(modalCreateToken)
 
             window.$("#modal-create-token").on("shown.bs.modal", () => {
                 window.$("#create-token-name").focus()

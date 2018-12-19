@@ -10,7 +10,7 @@
       <div class="card-header">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span>
-            OAuth Clients
+            Tokens de Clientes OAUTH
           </span>
 
           <a
@@ -18,7 +18,7 @@
             tabindex="-1"
             @click="showCreateClientForm"
           >
-            Create New Client
+            <span class="fa fa-plus pr-2" />Crear Nuevo
           </a>
         </div>
       </div>
@@ -29,7 +29,7 @@
           v-if="clients.length === 0"
           class="mb-0"
         >
-          You have not created any OAuth clients.
+          No hay creado ningun cliente OAUTH para tu usuario.
         </p>
 
         <table
@@ -38,9 +38,9 @@
         >
           <thead>
             <tr>
-              <th>Client ID</th>
-              <th>Name</th>
-              <th>Secret</th>
+              <th>Id.</th>
+              <th>Nombre</th>
+              <th>Secreto</th>
               <th />
               <th />
             </tr>
@@ -73,7 +73,7 @@
                   tabindex="-1"
                   @click="edit(client)"
                 >
-                  Edit
+                  <span class="fa fa-pencil pr-2" />Editar
                 </a>
               </td>
 
@@ -83,7 +83,7 @@
                   class="action-link text-danger"
                   @click="destroy(client)"
                 >
-                  Delete
+                  <span class="fa fa-trash pr-2" />Borrar
                 </a>
               </td>
             </tr>
@@ -99,11 +99,11 @@
       tabindex="-1"
       role="dialog"
     >
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">
-              Create Client
+              Nuevo Cliente OAUTH
             </h4>
 
             <button
@@ -123,7 +123,7 @@
               class="alert alert-danger"
             >
               <p class="mb-0">
-                <strong>Whoops!</strong> Something went wrong!
+                <strong>Ocurrió un error con el siguiente mensaje:</strong>
               </p>
               <br>
               <ul>
@@ -154,7 +154,7 @@
                   >
 
                   <span class="form-text text-muted">
-                    Something your users will recognize and trust.
+                    Algo que tus usuarios reconozcan y en lo que puedan confiar.
                   </span>
                 </div>
               </div>
@@ -162,7 +162,7 @@
               <!-- Redirect URL -->
               <div class="form-group row">
                 <label class="col-md-3 col-form-label">
-                  Redirect URL
+                  URL de redireccionamiento
                 </label>
 
                 <div class="col-md-9">
@@ -175,7 +175,7 @@
                   >
 
                   <span class="form-text text-muted">
-                    Your application's authorization callback URL.
+                    La URL callback de autorización de tu aplicación.
                   </span>
                 </div>
               </div>
@@ -189,7 +189,7 @@
               class="btn btn-secondary"
               data-dismiss="modal"
             >
-              Close
+              <span class="fa fa-times pr-2" />Cancelar
             </button>
 
             <button
@@ -197,7 +197,7 @@
               class="btn btn-primary"
               @click="store"
             >
-              Create
+              <span class="fa fa-check pr-2" />Crear
             </button>
           </div>
         </div>
@@ -215,7 +215,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">
-              Edit Client
+              Editar Cliente OAUTH
             </h4>
 
             <button
@@ -235,7 +235,7 @@
               class="alert alert-danger"
             >
               <p class="mb-0">
-                <strong>Whoops!</strong> Something went wrong!
+                <strong>Ocurrió un error con el siguiente mensaje:</strong>
               </p>
               <br>
               <ul>
@@ -253,7 +253,7 @@
               <!-- Name -->
               <div class="form-group row">
                 <label class="col-md-3 col-form-label">
-                  Name
+                  Nombre
                 </label>
 
                 <div class="col-md-9">
@@ -266,7 +266,7 @@
                   >
 
                   <span class="form-text text-muted">
-                    Something your users will recognize and trust.
+                    Algo que tus usuarios reconozcan y en lo que puedan confiar.
                   </span>
                 </div>
               </div>
@@ -274,7 +274,7 @@
               <!-- Redirect URL -->
               <div class="form-group row">
                 <label class="col-md-3 col-form-label">
-                  Redirect URL
+                  URL de redireccionamiento
                 </label>
 
                 <div class="col-md-9">
@@ -287,7 +287,7 @@
                   >
 
                   <span class="form-text text-muted">
-                    Your application's authorization callback URL.
+                    La URL callback de autorización de tu aplicación.
                   </span>
                 </div>
               </div>
@@ -301,7 +301,7 @@
               class="btn btn-secondary"
               data-dismiss="modal"
             >
-              Close
+              <span class="fa fa-times pr-2" />Cancelar
             </button>
 
             <button
@@ -309,7 +309,7 @@
               class="btn btn-primary"
               @click="update"
             >
-              Save Changes
+              <span class="fa fa-check pr-2" />Actualizar
             </button>
           </div>
         </div>
@@ -364,6 +364,13 @@ export default {
              */
         prepareComponent() {
             this.getClients()
+
+            let body = document.querySelector("body"),
+                modalEditClient = document.querySelector("#modal-edit-client"),
+                modalCreateClient = document.querySelector("#modal-create-client")
+
+            body.appendChild(modalEditClient)
+            body.appendChild(modalCreateClient)
 
             window.$("#modal-create-client").on("shown.bs.modal", () => {
                 window.$("#create-client-name").focus()
