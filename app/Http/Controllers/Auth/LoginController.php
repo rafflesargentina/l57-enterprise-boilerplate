@@ -37,6 +37,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth:api')->only('logout');
         $this->middleware('guest')->except('logout');
     }
 
@@ -50,7 +51,7 @@ class LoginController extends Controller
     {
         if ($request->wantsJson()) {
             try {
-                $user = $this->guard()->user();
+                $user = $request->user();
                 $token = $user->createToken(env('APP_NAME'));
                 $accessToken = $token->accessToken;
             } catch (\Exception $e) {
@@ -63,7 +64,7 @@ class LoginController extends Controller
                 'user' => $user
             ];
 
-            return $this->authenticated($request, $this->guard()->user())
+            return $this->authenticated($request, $request->user())
                     ?:  $this->validSuccessJsonResponse('Success', $data, $this->redirectPath());
         }
 
@@ -83,11 +84,12 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
-
         if ($request->wantsJson()) {
+            $request->user()->token()->revoke();
             return $this->loggedOut($request) ?: $this->validSuccessJsonResponse('Success', [], $this->redirectPath());
         }
+
+        $this->guard()->logout();
 
         $request->session()->invalidate();
 

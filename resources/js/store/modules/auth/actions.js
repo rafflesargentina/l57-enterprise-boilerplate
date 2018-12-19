@@ -21,15 +21,24 @@ export default {
         return response
     },
 
-    logout ({ commit }) {
+    logout ({ commit, dispatch }) {
+        axios.post("/logout")
+            .then(response => {
+                router.push({ path: response.data.redirect })
+            })
+            .catch(error => {
+                router.push({ path: '/' })
+
+                let data = error.response.data
+                commit(types.AUTH_ERROR, data)
+                return data
+            })
+
         unsetDefaultAuthHeaders()
         deleteSavedState("auth.token")
         deleteSavedState("auth.user")
 
-        commit(types.AUTH_RESET)
-
-        return axios.post("/logout")
-            .then(response => router.push({ path: response.data.redirect }))
+        return dispatch("reset")
     },
 
     reset ({ commit }) {
