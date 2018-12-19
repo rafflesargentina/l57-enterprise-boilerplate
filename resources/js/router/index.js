@@ -12,7 +12,25 @@ const routes = [
                 name: "Account",
                 path: "",
                 component: require("@/router/views/Account/PersonalData.vue")
-            }
+            },
+            {
+                beforeEnter: middleware.authRequired,
+                name: "AuthorizedClientTokens",
+                path: "/account/authorized-client-tokens",
+                component: require("@/router/views/Account/AuthorizedClientTokens.vue")
+            },
+            {
+                beforeEnter: middleware.authRequired,
+                name: "PersonalTokens",
+                path: "/account/personal-tokens",
+                component: require("@/router/views/Account/PersonalTokens.vue")
+            },
+            {
+                beforeEnter: middleware.authRequired,
+                name: "ClientTokens",
+                path: "/account/client-tokens",
+                component: require("@/router/views/Account/TokenClients.vue")
+            },
         ],
         component: require("@/router/views/Account/Account.vue"),
         path: "/account"
