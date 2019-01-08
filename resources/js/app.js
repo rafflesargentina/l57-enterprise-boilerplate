@@ -6,11 +6,12 @@
  */
 
 require("./bootstrap")
+require("@/utilities/directives")
 
 import store from "@/store"
 import router from "@/router"
-import Vue from "vue"
 import Snotify from "vue-snotify"
+import Vue from "vue"
 
 Vue.use(Snotify)
 
