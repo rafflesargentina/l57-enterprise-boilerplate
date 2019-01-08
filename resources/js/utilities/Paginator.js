@@ -48,7 +48,7 @@ class Paginator {
      * Get the pagination items total count.
      */
     get total () {
-        return size(this.PaginationItems)
+        return size(this.items)
     }
 
     /**
