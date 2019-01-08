@@ -39,6 +39,10 @@ const app = new Vue({
         window.axios.interceptors.response.use(null, (error)=> {
             let code = error.response.status
             if (error.config && !error.config.__isRetryRequest) {
+                if (code === 401) {
+                    router.push({ name: "Unauthorized" })
+                }
+
                 if (code > 404 && code < 420) {
                     switch (code) {
                     case 419:
@@ -47,7 +51,9 @@ const app = new Vue({
                     default:
                         this.$snotify.error("Ocurrió un error inesperado en la sesión de tu usuario. Por favor volvé a ingresar con tus credenciales.")
                     }
-                } else if (code === 500) {
+                }
+
+                if (code === 500) {
                     router.push({ name: "InternalServerError" })
                 }
             }
