@@ -344,6 +344,13 @@ export default {
         }
     },
 
+    destroyed() {
+        let modalEditClient = document.querySelector("#modal-edit-client"),
+            modalCreateClient = document.querySelector("#modal-create-client")
+        modalEditClient.parentNode.removeChild(modalEditClient)
+        modalCreateClient.parentNode.removeChild(modalCreateClient)
+    },
+
     /**
          * Prepare the component (Vue 1.x).
          */

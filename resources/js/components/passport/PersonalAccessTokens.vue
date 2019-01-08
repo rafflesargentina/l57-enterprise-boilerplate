@@ -265,6 +265,15 @@ export default {
         }
     },
 
+
+    destroyed() {
+        let modalAccessToken = document.querySelector("#modal-access-token"),
+            modalCreateToken = document.querySelector("#modal-create-token")
+
+        modalAccessToken.parentNode.removeChild(modalAccessToken)
+        modalCreateToken.parentNode.removeChild(modalCreateToken)
+    },
+
     /**
          * Prepare the component (Vue 1.x).
          */
