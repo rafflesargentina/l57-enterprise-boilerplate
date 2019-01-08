@@ -1,9 +1,9 @@
 <template>
-  <div class="contact">
+  <div class="main contact">
     <div class="contact-inner">
-      <main class="contact-content card contact__card">
-        <section class="contact-section">
-          <h4 class="contact-header">
+      <main class="card">
+        <section>
+          <h4 class="main-header">
             Envianos un mensaje
           </h4>
           <ContactForm

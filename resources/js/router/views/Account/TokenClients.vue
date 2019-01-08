@@ -1,7 +1,7 @@
 <template>
-  <main class="card account__card account-content">
-    <section class="account-section">
-      <h4 class="account-header">
+  <main class="card">
+    <section>
+      <h4 class="main-header">
         Tokens de Clientes OAUTH
       </h4>
       <Clients />

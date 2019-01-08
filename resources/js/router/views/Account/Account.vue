@@ -8,7 +8,7 @@
 </style>
 
 <template>
-  <div class="account account-container">
+  <div class="main account">
     <aside
       id="sidebar"
       class="sidebar sidebar--dark collapsed"
@@ -62,8 +62,8 @@
       </nav>
     </aside>
     <div
-      id="accountInner"
-      class="account-inner"
+      id="main-inner"
+      class="main-inner"
     >
       <Transition 
         name="fade" 
@@ -83,7 +83,7 @@ export default {
     methods: {
         toggle() {
             window.$("#sidebar").toggleClass("collapsed")
-            window.$("#accountInner").toggleClass("pushed")
+            window.$("#main-inner").toggleClass("pushed")
         }
     }
 }

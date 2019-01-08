@@ -1,14 +1,5 @@
 
 .contact {
-  float: left;
-  min-height: calc(100vh - #{$header-height});
-  position: relative;
-  width: 100%;
-
-  &-header {
-    margin-bottom: 5%;
-  }
-
   &-inner {
     @include clearfix;
     margin-left: auto;

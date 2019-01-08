@@ -43,9 +43,9 @@
       </div>
 
       <div class="col-sm-8 mb-2 mb-sm-0 pr-sm-2 pr-md-3">
-        <main class="account-content card account__card"> 
-          <section class="account-section">
-            <h4 class="account-header">
+        <main class="card">
+          <section>
+            <h4 class="main-header">
               Datos Personales
             </h4>
             <div class="row">
@@ -208,7 +208,7 @@
               </span>
             </button>
           </div>
-          <vue-dropzone 
+          <VueDropzone 
             id="dzAvatar"
             ref="dzAvatar"
             :options="dzOptions"
@@ -251,7 +251,6 @@
 <script>
 import { authComputed } from "@/store/helpers"
 import { getSavedState, mapDzMockFile,  previewDzThumbnailFromFile } from "@/utilities/helpers"
-import store from "@/store"
 import vue2Dropzone from "vue2-dropzone"
 import Form from "@/utilities/Form"
 
@@ -265,7 +264,7 @@ export default {
     name: "PersonalData",
 
     components: {
-        vueDropzone: vue2Dropzone
+        VueDropzone: vue2Dropzone
     },
 
     data() {
@@ -289,14 +288,6 @@ export default {
             dzHasAcceptedFiles: false,
             form: {}
         }
-    },
-
-    destroyed() {
-        let modalAccessToken = document.querySelector("#modal-access-token"),
-            modalCreateToken = document.querySelector("#modal-create-token")
-
-        modalAccessToken.parentNode.removeChild(modalAccessToken)
-        modalCreateToken.parentNode.removeChild(modalCreateToken)
     },
 
     computed: {
@@ -326,9 +317,14 @@ export default {
     created() {
         this.form = new Form(this.user)
 
-        store.watch(state => state.auth.user, value => {
+        this.$store.watch(state => state.auth.user, value => {
             this.form = new Form(value)
         })
+    },
+
+    destroyed() {
+        let modal = document.querySelector("#modalChangeAvatar")
+        modal.parentNode.removeChild(modal)
     },
 
     mounted() {
@@ -340,7 +336,7 @@ export default {
         dzAccept() {
             if (!this.dzHasError) {
                 window.$("#modalChangeAvatar").modal("hide")
-                return store.dispatch("auth/validate")
+                return this.$store.dispatch("auth/validate")
             }
         },
 

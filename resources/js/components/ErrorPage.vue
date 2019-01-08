@@ -1,13 +1,13 @@
 <template>
-  <div class="error_page full-height">
-    <div class="error_page-inner">
-      <main class="error_page-content">
-        <section class="error_page-section">
-          <div class="error_page-header">
+  <div class="error full-height">
+    <div class="error-inner">
+      <main>
+        <section>
+          <div class="main-header">
             <slot name="subtitle" />
             <slot name="title" />
+            <slot name="description" />
           </div>
-          <slot name="description" />
           <div class="row no-gutters">
             <RouterLink 
               to="/" 

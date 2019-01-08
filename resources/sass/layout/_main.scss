@@ -1,5 +1,30 @@
 
-.account {
+.main {
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - #{$header-height});
+
+  &-header {
+    margin-bottom: 5%;
+  }
+
+  &-inner {
+    padding: 0.5rem;
+    min-height: calc(100vh - #{$header-height});
+    margin-left: $header-height;
+
+    &:not(.pushed) {
+      transition: all .5s ease-in-out;
+      margin-left: $header-height;
+    }
+
+    &.pushed {
+      transition: all .5s ease-in-out;
+      transform: translateX(100%);
+      margin-left: 0;
+    }
+  }
+
   &__card-body {
     z-index: 2;
     line-height: 1.2;
@@ -53,9 +78,10 @@
 }
 
 @include media-breakpoint-up(md) {
-  .account {
+  .main {
+
     &-inner {
-      padding: 1rem;
+      padding: 2rem;
       &,
       &.pushed {
         transform: translateX(0);

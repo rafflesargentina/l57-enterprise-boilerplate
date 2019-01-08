@@ -13,6 +13,7 @@
   }
 
   &:not(.collapsed) {
+    transition: all .5s ease-in-out;
     width: 100%;
   }
 
@@ -89,7 +90,6 @@
 }
 
 @include media-breakpoint-up(md) {
-  .sidebar.collapsed,
   .sidebar:not(.collapsed) {
     width: 20%;
   }
