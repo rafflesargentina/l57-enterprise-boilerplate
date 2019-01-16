@@ -1,8 +1,12 @@
-import { map } from "lodash"
+import { filter, map } from "lodash"
 
 export function deleteSavedState(key) {
     window.localStorage.removeItem(key)
     window.sessionStorage.removeItem(key)
+}
+
+export function filterTags(tags, query) {
+    return filter(tags, tag => new RegExp(query, "i").test(tag.text))
 }
 
 export function getSavedState(key) {
@@ -41,6 +45,12 @@ export function mapDzMockFile(file) {
         name: file.location,
         size: file.size
     }
+}
+
+export function mapTags(tags, id = "id", text = "name") {
+    return map(tags, (tag)=> {
+        return { id: tag[id], text: tag[text] }
+    })
 }
 
 export function previewDzThumbnailFromFile(dz, file) {
