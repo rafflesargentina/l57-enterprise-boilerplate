@@ -19,3 +19,5 @@ Route::middleware('auth:api')->group(
         Route::put('account', 'UpdateAccountController');
     }
 );
+
+Route::apiResource('document-types', 'DocumentTypeController');
