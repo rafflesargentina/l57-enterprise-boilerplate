@@ -61,7 +61,7 @@ class User extends Authenticatable
      */
     public function avatar()
     {
-        return $this->morphOne(FeaturedPhoto::class, 'photoable');
+        return $this->morphOne(FeaturedPhoto::class, 'photoable')->withDefault();
     }
 
     /**

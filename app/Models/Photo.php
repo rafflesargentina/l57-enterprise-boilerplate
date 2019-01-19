@@ -21,6 +21,15 @@ class Photo extends Model
     ];
 
     /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'location' => 'img/placeholder.png',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
