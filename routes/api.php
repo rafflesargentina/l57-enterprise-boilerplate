@@ -21,3 +21,4 @@ Route::middleware('auth:api')->group(
 );
 
 Route::apiResource('document-types', 'DocumentTypeController');
+Route::apiResource('photos', 'PhotoController');
