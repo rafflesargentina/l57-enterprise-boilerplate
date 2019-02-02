@@ -11,6 +11,25 @@ export const authMethods = {
     ...mapActions("auth", ["login", "logout", "validate"])
 }
 
+export const documentTypesComputed = {
+    ...mapState(
+        "documentTypes", {
+            allDocumentTypes: state => state.all,
+            oneDocumentType: state => state.one,
+        }
+    ),
+}
+
+export const documentTypesMethods = {
+    ...mapActions(
+        "documentTypes", [
+            "deleteOneDocumentType",
+            "fetchAllDocumentTypes",
+            "fetchOneDocumentType"
+        ]
+    )
+}
+
 export const photosComputed = {
     ...mapState(
         "photos", {
