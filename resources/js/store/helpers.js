@@ -50,3 +50,22 @@ export const photosMethods = {
         ]
     )
 }
+
+export const usersComputed = {
+    ...mapState(
+        "users", {
+            allUsers: state => state.all,
+            oneUser: state => state.one,
+        }
+    ),
+}
+
+export const usersMethods = {
+    ...mapActions(
+        "users", [
+            "deleteOneUser",
+            "fetchAllUsers",
+            "fetchOneUser"
+        ]
+    )
+}
