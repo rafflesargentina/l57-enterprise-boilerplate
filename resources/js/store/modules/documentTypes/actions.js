@@ -15,7 +15,7 @@ export default {
             })
     },
 
-    fetchAllDocumentTypes ({ commit, dispatch }) {
+    fetchAllDocumentTypes ({ commit }) {
         return window.axios.get("/api/document-types")
             .then(response => {
                 const all = response.data.data
