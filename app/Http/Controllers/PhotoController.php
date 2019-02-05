@@ -7,6 +7,7 @@ use Raffles\Repositories\PhotoRepository;
 use DB;
 use Illuminate\Http\Request;
 use RafflesArgentina\ResourceController\ApiResourceController;
+use RafflesArgentina\ResourceController\Exceptions\ResourceControllerException;
 use Storage;
 
 class PhotoController extends ApiResourceController
