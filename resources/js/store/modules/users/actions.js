@@ -1,4 +1,5 @@
 import * as types from "../../mutation-types"
+import { mapTags } from "@/utilities/helpers"
 
 export default {
     deleteOneUser ({ commit }, id) {
@@ -29,17 +30,31 @@ export default {
             })
     },
 
-    fetchOneUser ({ commit }, id) {
+    fetchOneUser ({ commit, dispatch }, id) {
         return window.axios.get("/api/users/" + id)
             .then(response => {
                 const one = response.data
                 commit(types.USERS_FETCH_ONE, one)
+                dispatch("mapOnePermissionTags", one)
+                dispatch("mapOneRoleTags", one)
                 return one
             })
             .catch(error => {
                 commit(types.USERS_ERROR, error)
                 return error
             })
+    },
+
+    mapOnePermissionTags ({ commit }, one) {
+        const onePermissionTags = mapTags(one.permissions)
+        commit(types.USERS_ONE_PERMISSION_MAP_TAGS, onePermissionTags)
+        return onePermissionTags
+    },
+
+    mapOneRoleTags ({ commit }, one) {
+        const oneRoleTags = mapTags(one.roles)
+        commit(types.USERS_ONE_ROLE_MAP_TAGS, oneRoleTags)
+        return oneRoleTags
     },
 
     reset ({ commit }) {

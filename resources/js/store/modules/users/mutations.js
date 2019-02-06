@@ -16,7 +16,15 @@ export default {
         state.one = Object.freeze(payload)
     },
 
+    [types.USERS_ONE_PERMISSION_MAP_TAGS] (state, payload) {
+        state.onePermissionMappedTags = payload
+    },
+
     [types.USERS_RESET] (state) {
         Object.assign(state, { initialState: initialState(), ...initialState() })
-    }
+    },
+
+    [types.USERS_ONE_ROLE_MAP_TAGS] (state, payload) {
+        state.oneRoleMappedTags = payload
+    },
 }

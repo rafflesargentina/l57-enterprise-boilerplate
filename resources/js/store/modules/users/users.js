@@ -13,6 +13,8 @@ export function initialState()
             password: "",
             slug: "",
         },
+        onePermissionMappedTags: [],
+        oneRoleMappedTags: [],
     }
 }
 

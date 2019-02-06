@@ -56,6 +56,8 @@ export const usersComputed = {
         "users", {
             allUsers: state => state.all,
             oneUser: state => state.one,
+            oneUserPermissionMappedTags: state => state.onePermissionMappedTags,
+            oneUserRolesMappedTags: state => state.oneRoleMappedTags,
         }
     ),
 }
@@ -65,7 +67,9 @@ export const usersMethods = {
         "users", [
             "deleteOneUser",
             "fetchAllUsers",
-            "fetchOneUser"
+            "fetchOneUser",
+            "mapOnePermissionTags",
+            "mapOneRoleTags",
         ]
     )
 }
