@@ -2,7 +2,15 @@ import { strLimit } from "@/utilities/helpers"
 
 export default {
     isAdmin (state) {
-        return state.user.roles.map(item => item["slug"]).includes("admin")
+        var user = state.user
+        if (user) {
+            var roles = user.roles
+            if (roles) {
+                return roles.map(item => item["slug"]).includes("admin")
+            }
+        }
+
+        return false
     },
 
     isAuthenticated (state) {
