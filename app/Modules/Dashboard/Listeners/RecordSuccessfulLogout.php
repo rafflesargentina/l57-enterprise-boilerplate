@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 
-class RecordSuccessfulLogout
+class RecordSuccessfulLogout implements ShouldQueue
 {
     /**
      * The request object.
