@@ -5,6 +5,7 @@ namespace Raffles\Http\Controllers\Auth;
 use Raffles\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use RafflesArgentina\ResourceController\Traits\FormatsValidJsonResponses;
 
@@ -85,7 +86,10 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         if ($request->wantsJson()) {
-            $request->user()->token()->revoke();
+            $user = $request->user();
+            $guard = $this->guard();
+            $user->token()->revoke();
+            event(new Logout($guard, $user));
             return $this->loggedOut($request) ?: $this->validSuccessJsonResponse('Success', [], $this->redirectPath());
         }
 
