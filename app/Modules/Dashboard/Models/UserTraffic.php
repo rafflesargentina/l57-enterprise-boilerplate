@@ -2,8 +2,8 @@
 
 namespace Raffles\Modules\Dashboard\Models;
 
-//use Raffles\Filters\UserTrafficFilters;
-//use Raffles\Sorters\UserTrafficSorters;
+use Raffles\Modules\Dashboard\Filters\UserTrafficFilters;
+use Raffles\Modules\Dashboard\Sorters\UserTrafficSorters;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,18 +11,7 @@ use RafflesArgentina\FilterableSortable\FilterableSortableTrait;
 
 class UserTraffic extends Model
 {
-    use SoftDeletes;
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'created_at' => 'datetime:y-m-d H:m',
-        'deleted_at' => 'datetime:y-m-d H:m',
-        'updated_at' => 'datetime:y-m-d H:m',
-    ];
+    use FilterableSortableTrait, SoftDeletes;
 
     /**
      * The attributes that should be mutated to dates.
@@ -53,14 +42,14 @@ class UserTraffic extends Model
      *
      * @var mixed
      */
-    //protected $filters = UserTrafficFilters::class;
+    protected $filters = UserTrafficFilters::class;
 
     /**
      * The query sorters associated class.
      *
      * @var mixed
      */
-    //protected $sorters = UserTrafficSorters::class;
+    protected $sorters = UserTrafficSorters::class;
 
     /**
      * The table associated with the model.
