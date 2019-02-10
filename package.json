@@ -3,8 +3,8 @@
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "eslint": "./node_modules/.bin/eslint resources/js/ --ext .js,.vue",
-    "eslint:fix": "./node_modules/.bin/eslint resources/js/ --ext .js,.vue --fix",
+    "eslint": "./node_modules/.bin/eslint resources/js/ app/Modules/Dashboard/Resources/Javascript --ext .js,.vue",
+    "eslint:fix": "./node_modules/.bin/eslint resources/js/ app/Modules/Dashboard/Resources/Javascript  --ext .js,.vue --fix",
     "watch": "npm run development -- --watch",
     "watch-poll": "npm run watch -- --watch-poll",
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -17,6 +17,7 @@
     "axios": "^0.18",
     "bootstrap": "^4.0.0",
     "browserslist": "^4.3.5",
+    "chart.js": "^2.7.3",
     "cross-env": "^5.1",
     "eslint": "^5.9.0",
     "eslint-config-standard": "^12.0.0",
