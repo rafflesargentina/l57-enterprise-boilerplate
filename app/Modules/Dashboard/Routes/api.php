@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,8 +11,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get(
-    '/dashboard', function (Request $request) {
-        // return $request->dashboard();
-    }
-)->middleware('auth:api');
+Route::get('browser-usage', 'BrowserUsageController');
+Route::get('device-usage', 'DeviceUsageController');
+Route::get('device-type-usage', 'DeviceTypeUsageController');
+Route::get('geo-usage', 'GeoUsageController');
+Route::get('platform-usage', 'PlatformUsageController');
+Route::get('user-traffic-count', 'UserTrafficCountController');
+Route::get('users-active', 'UserActiveController');
+Route::get('users-count', 'UserCountController');
+Route::get('users-created', 'UserCreatedController');
+
+Route::apiResource('user-traffic', 'UserTrafficController');
+Route::apiResource('user-traffic-count', 'UserTrafficCountController');
