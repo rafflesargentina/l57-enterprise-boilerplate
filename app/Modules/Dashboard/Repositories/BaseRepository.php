@@ -9,6 +9,24 @@ use DB;
 class BaseRepository extends EloquentRepository
 {
     /**
+     * Find all entities.
+     *
+     * @param array $columns
+     * @param array $with
+     */
+    public function findAll($columns = ['*'], $with = [])
+    {
+        $cacheKey = $this->generateKey([$columns, $with]);
+
+        return $this->cacheResults(get_called_class(), __FUNCTION__, $cacheKey, function () use ($columns, $with) {
+            return $this->model->with($with)
+                ->filter()
+                ->sort()
+                ->get($columns);
+        });
+    }
+
+    /**
      * Get records count.
      *
      * @return Collection
