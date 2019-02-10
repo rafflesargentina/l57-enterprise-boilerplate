@@ -11,43 +11,43 @@ const routes = [
                 beforeEnter: middleware.authRequired,
                 name: "Account",
                 path: "",
-                component: require("@/router/views/Account/PersonalData.vue")
+                component: view("Account/PersonalData"),
             },
             {
                 beforeEnter: middleware.authRequired,
                 name: "AuthorizedClientTokens",
                 path: "/account/authorized-client-tokens",
-                component: require("@/router/views/Account/AuthorizedClientTokens.vue")
+                component: view("Account/AuthorizedClientTokens"),
             },
             {
                 beforeEnter: middleware.authRequired,
                 name: "PersonalTokens",
                 path: "/account/personal-tokens",
-                component: require("@/router/views/Account/PersonalTokens.vue")
+                component: view("Account/PersonalTokens"),
             },
             {
                 beforeEnter: middleware.authRequired,
                 name: "ClientTokens",
                 path: "/account/client-tokens",
-                component: require("@/router/views/Account/TokenClients.vue")
+                component: view("Account/TokenClients"),
             },
         ],
-        component: require("@/router/views/Account/Account.vue"),
+        component: view("Account/Account"),
         path: "/account"
     },
     {
-        component: require("@/router/views/Home.vue"),
+        component: view("Home"),
         name: "Home",
         path: "/"
     },
     {
-        component: require("@/router/views/Contact.vue"),
+        component: view("Contact"),
         name: "Contact",
         path: "/contact"
     },
     {
         beforeEnter: middleware.authNotRequired,
-        component: require("@/router/views/auth/Login.vue"),
+        component: view("auth/Login"),
         meta: {
             footer: false
         },
@@ -55,7 +55,7 @@ const routes = [
         path: "/login"
     },
     {
-        component: require("@/router/views/auth/Logout.vue"),
+        component: view("auth/Logout"),
         meta: {
             footer: false,
         },
@@ -64,7 +64,7 @@ const routes = [
     },
     {
         beforeEnter: middleware.authNotRequired,
-        component: require("@/router/views/auth/Register.vue"),
+        component: view("auth/Register"),
         meta: {
             footer: false
         },
@@ -73,7 +73,7 @@ const routes = [
     },
     {
         beforeEnter: middleware.authNotRequired,
-        component: require("@/router/views/auth/passwords/Request.vue"),
+        component: view("auth/passwords/Request"),
         meta: {
             footer: false
         },
@@ -82,7 +82,7 @@ const routes = [
     },
     {
         beforeEnter: middleware.authNotRequired,
-        component: require("@/router/views/auth/passwords/Reset.vue"),
+        component: view("auth/passwords/Reset"),
         meta: {
             footer: false
         },
@@ -92,19 +92,29 @@ const routes = [
     {
         name: "InternalServerError",
         path: "/sorry",
-        component: require("@/router/views/Errors/InternalServerError")
+        component: view("Errors/InternalServerError"),
     },
     {
         name: "Unauthorized",
         path: "/unauthorized",
-        component: require("@/router/views/Errors/Unauthorized")
+        component: view("Errors/Unauthorized"),
     },
     {
         name: "PageNotFound",
         path: "*",
-        component: require("@/router/views/Errors/PageNotFound")
+        component: view("Errors/PageNotFound"),
     },
 ]
+
+/**
+ * Asynchronously load view (Webpack Lazy loading compatible)
+ * @param {string} name The filename (basename) of the view to load.
+ */
+function view(name) {
+    return function(resolve) {
+        require(['./views/' + name + '.vue'], resolve);
+    }
+};
 
 export default new VueRouter({
     history: true,
