@@ -2,7 +2,7 @@
 
 namespace Raffles\Modules\Dashboard\Repositories;
 
-use Raffles\Models\User;
+use Raffles\Modules\Dashboard\Models\User;
 
 class UserRepository extends BaseRepository
 {

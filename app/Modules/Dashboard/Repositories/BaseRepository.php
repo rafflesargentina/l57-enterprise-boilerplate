@@ -42,6 +42,8 @@ class BaseRepository extends EloquentRepository
                 return $this->model
                     ->select(DB::raw('*, count(*) as count, '.$dateFormats))
                     ->groupBy($groupBy)
+                    ->filter()
+                    ->sort()
                     ->get($columns);
             }
         );
@@ -83,6 +85,8 @@ class BaseRepository extends EloquentRepository
                 return $this->model->withTrashed()
                     ->select(DB::raw('*, count(*) as count, '.$dateFormats))
                     ->groupBy($groupBy)
+                    ->filter()
+                    ->sort()
                     ->get($columns);
             }
         );
@@ -99,9 +103,9 @@ class BaseRepository extends EloquentRepository
         $deletedAtPreset = request()->deleted_at_preset;
         $updatedAtPreset = request()->updated_at_preset;
 
-        $dateFormats = $createdAtPreset === 'today' ? 'DATE_FORMAT(created_at, "%y-%m-%d %H:%m") as creation_date,' : 'DATE_FORMAT(created_at, "%y-%m-%d %H") as creation_date,';
-        $dateFormats .= $deletedAtPreset === 'today' ? 'DATE_FORMAT(deleted_at, "%y-%m-%d %H:%m") as deletion_date,' : 'DATE_FORMAT(deleted_at, "%y-%m-%d %H") as deletion_date,';
-        $dateFormats .= $updatedAtPreset === 'today' ? 'DATE_FORMAT(updated_at, "%y-%m-%d %H:%m") as updating_date,' : 'DATE_FORMAT(updated_at, "%y-%m-%d %H") as updating_date';
+        $dateFormats = $createdAtPreset === 'today' ? 'DATE_FORMAT(created_at, "%y-%m-%d %H") as creation_date,' : 'DATE_FORMAT(created_at, "%y-%m-%d") as creation_date,';
+        $dateFormats .= $deletedAtPreset === 'today' ? 'DATE_FORMAT(deleted_at, "%y-%m-%d %H") as deletion_date,' : 'DATE_FORMAT(deleted_at, "%y-%m-%d") as deletion_date,';
+        $dateFormats .= $updatedAtPreset === 'today' ? 'DATE_FORMAT(updated_at, "%y-%m-%d %H") as updating_date,' : 'DATE_FORMAT(updated_at, "%Y-%m-%d") as updating_date';
 
         return $dateFormats;
     }
