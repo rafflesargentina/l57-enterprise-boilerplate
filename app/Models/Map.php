@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Map extends Model
 {
     /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'zoom' => '14',
+    ];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
