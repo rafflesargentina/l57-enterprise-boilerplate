@@ -24,7 +24,7 @@ require("./store")
  */
 
 const files = require.context("./", true, /\.vue$/i)
-files.keys().map(key => Vue.component(key.split("/").pop().split(".")[0], files(key)))
+files.keys().map(key => Vue.component(key.split("/").pop().split(".")[0], (resolve) => resolve(files(key))))
 
 window.google.charts.load({
     packages: ["geochart"],
