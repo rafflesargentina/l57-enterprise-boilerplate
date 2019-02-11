@@ -112,9 +112,9 @@ const routes = [
  */
 function view(name) {
     return function(resolve) {
-        require(['./views/' + name + '.vue'], resolve);
+        require(["./views/" + name + ".vue"], resolve)
     }
-};
+}
 
 export default new VueRouter({
     history: true,
