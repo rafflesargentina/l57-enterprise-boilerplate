@@ -53,6 +53,7 @@ class LoginController extends Controller
         if ($request->wantsJson()) {
             try {
                 $user = $request->user();
+                $user->load('permissions', 'roles');
                 $token = $user->createToken(env('APP_NAME'));
                 $accessToken = $token->accessToken;
             } catch (\Exception $e) {

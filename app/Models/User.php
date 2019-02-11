@@ -54,7 +54,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $with = ['avatar', 'permissions', 'roles'];
+    protected $with = 'avatar';
 
     /**
      * Get the user's featured photo.
