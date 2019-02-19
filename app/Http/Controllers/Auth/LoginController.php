@@ -88,9 +88,8 @@ class LoginController extends Controller
     {
         if ($request->wantsJson()) {
             $user = $request->user();
-            $guard = $this->guard();
             $user->token()->revoke();
-            event(new Logout($guard, $user));
+            event(new Logout('api', $user));
             return $this->loggedOut($request) ?: $this->validSuccessJsonResponse('Success', [], $this->redirectPath());
         }
 
