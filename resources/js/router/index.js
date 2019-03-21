@@ -108,6 +108,7 @@ const routes = [
 
 /**
  * Asynchronously load view (Webpack Lazy loading compatible)
+ *
  * @param {string} name The filename (basename) of the view to load.
  */
 function view(name) {
@@ -119,5 +120,8 @@ function view(name) {
 export default new VueRouter({
     history: true,
     mode: "history",
-    routes
+    routes,
+    scrollBehavior() {
+        return { x: 0, y: 0 };
+    },
 })
