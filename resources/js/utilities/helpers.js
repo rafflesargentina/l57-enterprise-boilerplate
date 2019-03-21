@@ -69,6 +69,14 @@ export function previewDzThumbnailFromFile(dz, file) {
     )
 }
 
+export function removeDzPreviewTemplate(dz) {
+    var files = dz.files
+
+    if (files.length > 0 ) {
+        return files.forEach(file => file.previewElement.remove())
+    }
+}
+
 export function saveState(key, state, remember) {
     if (remember) {
         window.localStorage.setItem(key, JSON.stringify(state))
