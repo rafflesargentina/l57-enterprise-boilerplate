@@ -79,6 +79,8 @@ export default {
         items() {
             this.paginator.items = this.items
             this.paginator.setCurrentPage()
+            this.$emit("pagination-page-change", this.paginator.currentPage)
+            this.$emit("pagination-items-change", this.paginator.paginationItems)
         }
     },
 
@@ -86,6 +88,7 @@ export default {
         update(n){
             this.paginator.setCurrentPage(n)
             this.$emit("pagination-page-change", n)
+            this.$emit("pagination-items-change", this.paginator.paginationItems)
         },
     },
 }
