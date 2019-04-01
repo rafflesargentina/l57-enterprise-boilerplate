@@ -10,9 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/{catchall?}', 'HomeController')->where('catchall', '^(?!api).*$')->name('home');
-
 Auth::routes();
 
+Route::get('/auth/{provider}', 'Auth\SocialLoginController@authenticate');
+
+Route::post('/auth/{provider}/callback', 'Auth\SocialLoginController@login');
 Route::post('/contact', 'ContactController');
+
+Route::get('/{catchall?}', 'HomeController')->where('catchall', '^(?!api).*$')->name('home');
