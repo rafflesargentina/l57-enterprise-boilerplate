@@ -71,4 +71,12 @@ class User extends Authenticatable
     {
         return $this->morphMany(Photo::class, 'photoable');
     }
+
+    /**
+     * Get the social login profile record associated with the user.
+     */
+    public function socialLoginProfile()
+    {
+        return $this->hasOne(SocialLoginProfile::class);
+    }
 }
