@@ -16,8 +16,8 @@ class CreateMapsTable extends Migration
         Schema::create(
             'maps', function (Blueprint $table) {
                 $table->increments('id');
-                $table->unsignedInteger('mapable_id')->nullable();
-                $table->string('mapable_type')->nullable();
+                $table->unsignedInteger('mapable_id');
+                $table->string('mapable_type');
                 $table->float('lat', 11, 8)->nullable();
                 $table->float('lng', 11, 8)->nullable();
                 $table->unsignedInteger('zoom')->nullable();

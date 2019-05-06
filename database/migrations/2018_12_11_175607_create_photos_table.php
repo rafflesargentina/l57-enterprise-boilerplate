@@ -17,8 +17,8 @@ class CreatePhotosTable extends Migration
             'photos', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('slug')->nullable();
-                $table->unsignedInteger('photoable_id')->nullable();
-                $table->string('photoable_type')->nullable();
+                $table->unsignedInteger('photoable_id');
+                $table->string('photoable_type');
                 $table->string('location');
                 $table->string('name')->nullable();
                 $table->text('description')->nullable();

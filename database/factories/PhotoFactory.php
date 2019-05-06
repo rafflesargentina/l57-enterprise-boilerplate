@@ -11,6 +11,8 @@ $factory->define(
         'featured' => rand(0, 1),
         'location' => $faker->imageUrl,
         'name' => $name,
+        'photoable_id' => '1',
+        'photoable_type' => 'Raffles\Models\User',
         'slug' => str_slug($name)
         ];
     }
