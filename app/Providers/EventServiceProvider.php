@@ -4,6 +4,7 @@ namespace Raffles\Providers;
 
 use Raffles\Listeners\PruneOldTokens;
 use Raffles\Listeners\RevokeOldTokens;
+use Raffles\Listeners\SendEmailUserRegistered;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -29,8 +30,18 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         Registered::class => [
+            SendEmailUserRegistered::class,
             SendEmailVerificationNotification::class,
         ]
+    ];
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        //
     ];
 
     /**
