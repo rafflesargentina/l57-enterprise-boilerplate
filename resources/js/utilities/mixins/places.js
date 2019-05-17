@@ -21,33 +21,28 @@ export const places = {
             // Get the place details from the autocomplete object.
             this.place = this.autocomplete.getPlace()
 
-            var formField
-            for (var component in this.componentForm) {
-                formField = this.form.address[this.componentForm[component][0]]
-                if (formField) {
-                    formField = ""
-                }
+            var component, formField
+
+            for (component in this.componentForm) {
+                this.form.address[this.componentForm[component][0]] = ""
 
                 formField = document.getElementById(component)
                 if (formField) {
                     document.getElementById(component).value = ""
+                    document.getElementById(component).disabled = false
                 }
-
-                document.getElementById(component).disabled = false
             }
 
             // Get each component of the address from the place details,
             // and then fill-in the corresponding field on the form.
             for (var i = 0; i < this.place.address_components.length; i++) {
                 var addressType = this.place.address_components[i].types[0]
+
                 if (this.componentForm[addressType]) {
                     var val = this.place.address_components[i][this.componentForm[addressType][1]]
-                    component = this.componentForm[addressType][0]
 
-                    formField = this.form.address[component]
-                    if (formField) {
-                        formField = val
-                    }
+                    component = this.componentForm[addressType][0]
+                    this.form.address[component] = val
 
                     formField = document.getElementById(component)
                     if (formField) {
@@ -59,7 +54,7 @@ export const places = {
 
         geolocate() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
+                navigator.geolocation.getCurrentPosition((position)=> {
                     var geolocation = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
