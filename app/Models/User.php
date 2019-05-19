@@ -73,6 +73,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the user's contact.
+     */
+    public function contact()
+    {
+        return $this->morphOne(Contact::class, 'contactable');
+    }
+
+    /**
      * Get the user's featured photo.
      */
     public function avatar()
