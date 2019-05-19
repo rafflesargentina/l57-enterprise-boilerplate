@@ -9,21 +9,19 @@ export default {
                 return r
             })
             .catch(error => {
-                console.error(error)
                 commit(types.DOCUMENT_TYPES_ERROR, error)
                 return error
             })
     },
 
-    fetchAllDocumentTypes ({ commit }) {
-        return window.axios.get("/api/document-types")
+    fetchAllDocumentTypes ({ commit }, params) {
+        return window.axios.get("/api/document-types", { params: params })
             .then(response => {
                 const all = response.data.data
                 commit(types.DOCUMENT_TYPES_FETCH_ALL, all)
                 return all
             })
             .catch(error => {
-                console.log(error)
                 commit(types.DOCUMENT_TYPES_ERROR, error)
                 return error
             })

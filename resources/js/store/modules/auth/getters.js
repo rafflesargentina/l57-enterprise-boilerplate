@@ -1,6 +1,18 @@
 import { strLimit } from "@/utilities/helpers"
 
 export default {
+    investments (state) {
+        var user = state.user
+        if (user) {
+            var investments = user.investments
+            if (investments) {
+                return investments.map(item => item["id"])
+            }
+        }
+
+        return []
+    },
+
     isAdmin (state) {
         var user = state.user
         if (user) {
