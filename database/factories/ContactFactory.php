@@ -11,5 +11,6 @@ $factory->define(Raffles\Models\Contact::class, function (Faker $faker) {
         'mobile' => $faker->phoneNumber,
         'phone' => $faker->phoneNumber,
         'position' => $faker->word,
+        'website' => $faker->domainName,
     ];
 });

@@ -19,6 +19,7 @@ class Contact extends Model
         'mobile',
         'phone',
         'position',
+        'website',
     ];
 
     /**

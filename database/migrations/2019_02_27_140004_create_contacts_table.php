@@ -22,6 +22,7 @@ class CreateContactsTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('phone')->nullable();
             $table->string('fax')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }
