@@ -72,6 +72,10 @@ export default {
 
         to() {
             return this.paginator.to
+        },
+
+        total() {
+            return this.paginator.total
         }
     },
 

@@ -41,7 +41,7 @@ class Paginator {
      * Get the current page last item number.
      */
     get to () {
-        return size(this.items) > 0 ? this.from + this.count - 1 : 0
+        return size(this.items) > 0 ? this.from + size(this.paginationItems) - 1 : 0
     }
 
     /**
