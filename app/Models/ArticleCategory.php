@@ -15,6 +15,7 @@ class ArticleCategory extends Model
         'description',
         'name',
         'slug',
+        'user_id',
     ];
 
     /**
@@ -41,7 +42,7 @@ class ArticleCategory extends Model
     }
 
     /**
-     * Get the article's photos.
+     * Get all of the article's photos.
      */
     public function photos()
     {
@@ -54,5 +55,13 @@ class ArticleCategory extends Model
     public function unfeatured_photos()
     {
         return $this->morphMany(UnfeaturedPhoto::class, 'photoable');
+    }
+
+    /**
+     * Get the user that owns the article category.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
