@@ -29,10 +29,18 @@ trait PhotoTrait
     {
         if ($this->location && Storage::exists($this->location)) {
             return $this->attributes['url'] = Storage::url($this->location);
-        } elseif (starts_with($this->location, 'http')) {
-            return $this->attributes['url'] = $this->location;
         } else {
-            return $this->attributes['url'] = '';
+            return $this->attributes['url'] = $this->location;
         }
+    }
+
+    /**
+     * Get the photo thumbnail.
+     *
+     * @return string
+     */
+    public function getThumbnailAttribute()
+    {
+        return $this->url;
     }
 }
