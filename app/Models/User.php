@@ -73,6 +73,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the user's companies.
+     */
+    public function companies()
+    {
+        return $this->hasMany(Company::class);
+    }
+
+    /**
      * Get the user's contact.
      */
     public function contact()
@@ -81,7 +89,15 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the user's featured photo.
+     * Get the user's contacts.
+     */
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
+
+    /**
+     * Get the user's avatar.
      */
     public function avatar()
     {
@@ -101,7 +117,7 @@ class User extends Authenticatable
      */
     public function photos()
     {
-        return $this->morphMany(Photo::class, 'photoable');
+        return $this->hasMany(Photo::class);
     }
 
     /**
