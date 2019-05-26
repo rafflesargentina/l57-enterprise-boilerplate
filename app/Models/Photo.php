@@ -17,6 +17,7 @@ class Photo extends Model
      */
     protected $appends = [
         'size',
+        'thumbnail',
         'url',
     ];
 

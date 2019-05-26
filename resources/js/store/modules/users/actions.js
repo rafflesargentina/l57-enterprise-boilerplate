@@ -10,21 +10,19 @@ export default {
                 return r
             })
             .catch(error => {
-                console.log(error)
                 commit(types.USERS_ERROR, error)
                 return error
             })
     },
 
-    fetchAllUsers ({ commit }) {
-        return window.axios.get("/api/users")
+    fetchAllUsers ({ commit }, params) {
+        return window.axios.get("/api/users", { params: params })
             .then(response => {
                 const all = response.data.data
                 commit(types.USERS_FETCH_ALL, all)
                 return all
             })
             .catch(error => {
-                console.log(error)
                 commit(types.USERS_ERROR, error)
                 return error
             })

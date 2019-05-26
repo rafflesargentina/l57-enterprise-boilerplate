@@ -9,10 +9,11 @@ export function initialState()
         featured: [],
         nonFeatured: [],
         one: {
-            location: "",
             alt: "",
-            name: "",
             description: "",
+            location: "",
+            name: "",
+            slug: "",
         },
     }
 }

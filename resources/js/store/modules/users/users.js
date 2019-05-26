@@ -7,10 +7,14 @@ export function initialState()
     return {
         all: [],
         one: {
+            address: {},
+            avatar: {},
+            contact: {},
             email: "",
             first_name: "",
             last_name: "",
             password: "",
+            photos: [],
             slug: "",
         },
         onePermissionMappedTags: [],

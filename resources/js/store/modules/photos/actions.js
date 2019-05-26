@@ -10,14 +10,13 @@ export default {
                 return r
             })
             .catch(error => {
-                console.log(error)
                 commit(types.PHOTOS_ERROR, error)
                 return error
             })
     },
 
-    fetchAllPhotos ({ commit, dispatch }) {
-        return window.axios.get("/api/photos")
+    fetchAllPhotos ({ commit, dispatch }, params) {
+        return window.axios.get("/api/photos", { params: params })
             .then(response => {
                 const all = response.data.data
                 commit(types.PHOTOS_FETCH_ALL, all)
@@ -26,7 +25,6 @@ export default {
                 return all
             })
             .catch(error => {
-                console.log(error)
                 commit(types.PHOTOS_ERROR, error)
                 return error
             })
