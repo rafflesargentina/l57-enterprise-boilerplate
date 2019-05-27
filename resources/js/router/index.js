@@ -55,6 +55,10 @@ const routes = [
         path: "/login"
     },
     {
+        component: view("socialite/ProviderCallback"),
+        path: "/auth/:provider/callback",
+    },
+    {
         component: view("auth/Logout"),
         meta: {
             footer: false,
