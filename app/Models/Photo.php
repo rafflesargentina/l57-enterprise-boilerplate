@@ -42,7 +42,8 @@ class Photo extends Model
         'name',
         'photoable_id',
         'photoable_type',
-        'slug'
+        'slug',
+        'user_id',
     ];
 
     /**
@@ -58,5 +59,13 @@ class Photo extends Model
     public function photoable()
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Get the user that owns the photo.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

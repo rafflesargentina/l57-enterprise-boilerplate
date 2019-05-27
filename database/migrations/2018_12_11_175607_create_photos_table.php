@@ -19,6 +19,8 @@ class CreatePhotosTable extends Migration
                 $table->string('slug')->nullable();
                 $table->unsignedInteger('photoable_id');
                 $table->string('photoable_type');
+                $table->unsignedInteger('user_id')->nullable();
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
                 $table->string('location');
                 $table->string('name')->nullable();
                 $table->text('description')->nullable();
