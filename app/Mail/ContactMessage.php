@@ -38,6 +38,7 @@ class ContactMessage extends Mailable
     public function build()
     {
         return $this->markdown('emails.contact-message')
+            ->subject('Nuevo mensaje desde '.env('APP_NAME'))
             ->with('data', $this->data);
     }
 }
