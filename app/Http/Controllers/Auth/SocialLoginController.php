@@ -95,7 +95,7 @@ class SocialLoginController extends LoginController
      */
     protected function sendLoginResponse(Request $request)
     {
-
+\Log::info('asdasdasd');
         $provider = $request->provider;
         $socialUser = $this->socialite->driver($provider)->stateless()->user();
         $user = $this->firstOrCreateUser($socialUser);
@@ -109,7 +109,7 @@ class SocialLoginController extends LoginController
                 $token = $user->createToken(env('APP_NAME'));
                 $accessToken = $token->accessToken;
             } catch (\Exception $e) {
-                return $this->validInternalServerErrorJsonResponse($e, $e->getMessage());
+                //return $this->validInternalServerErrorJsonResponse($e, $e->getMessage());
             }
 
             $data = [
@@ -152,7 +152,9 @@ class SocialLoginController extends LoginController
             ]
         );
 
-        $user->wasRecentlyCreated === true ?: event(new Registered($user));
+        if ($user->wasRecentlyCreated) {
+            event(new Registered($user));
+        }
 
         return $user;
     }
