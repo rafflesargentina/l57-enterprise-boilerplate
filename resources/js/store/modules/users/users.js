@@ -6,10 +6,28 @@ export function initialState()
 {
     return {
         all: [],
+        allPending: false,
         one: {
-            address: {},
+            address: {
+                country: "",
+                door_number: "",
+                floor_number: "",
+                locality: "",
+                state: "",
+                street_name: "",
+                street_number: "",
+                sublocality: "",
+                zip: "",
+            },
             avatar: {},
-            contact: {},
+            contact: {
+                email: "",
+                fax: "",
+                mobile: "",
+                phone: "",
+                position: "",
+                website: "",
+            },
             email: "",
             first_name: "",
             last_name: "",
@@ -17,6 +35,7 @@ export function initialState()
             photos: [],
             slug: "",
         },
+        onePending: false,
         onePermissionMappedTags: [],
         oneRoleMappedTags: [],
     }

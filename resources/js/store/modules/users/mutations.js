@@ -12,8 +12,16 @@ export default {
         state.all = payload
     },
 
+    [types.USERS_FETCH_ALL_PENDING] (state, payload) {
+        state.allPending = payload
+    },
+
     [types.USERS_FETCH_ONE] (state, payload) {
         state.one = Object.freeze(payload)
+    },
+
+    [types.USERS_FETCH_ONE_PENDING] (state, payload) {
+        state.onePending = payload 
     },
 
     [types.USERS_ONE_PERMISSION_MAP_TAGS] (state, payload) {

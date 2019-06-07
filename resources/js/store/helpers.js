@@ -4,7 +4,7 @@ export const authComputed = {
     ...mapState("auth", {
         user: state => state.user
     }),
-    ...mapGetters("auth", ["isAuthenticated", "username"])
+    ...mapGetters("auth", ["authPending", "isAuthenticated", "isAdmin", "username"])
 }
 
 export const authMethods = {
@@ -18,6 +18,10 @@ export const documentTypesComputed = {
             oneDocumentType: state => state.one,
         }
     ),
+    ...mapGetters("documentTypes", [
+        "allDocumentTypesPending",
+        "oneDocumentTypePending"
+    ])
 }
 
 export const documentTypesMethods = {
@@ -39,6 +43,10 @@ export const photosComputed = {
             photosNonFeatured: state => state.nonFeatured
         }
     ),
+    ...mapGetters("photos", [
+        "allPhotosPending",
+        "onePhotoPending"
+    ])
 }
 
 export const photosMethods = {
@@ -60,6 +68,10 @@ export const usersComputed = {
             oneUserRolesMappedTags: state => state.oneRoleMappedTags,
         }
     ),
+    ...mapGetters("users", [
+        "allUsersPending",
+        "oneUserPending"
+    ])
 }
 
 export const usersMethods = {

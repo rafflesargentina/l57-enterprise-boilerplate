@@ -5,6 +5,7 @@ import router from "@/router"
 
 export default {
     init({ commit, dispatch, state }) {
+        commit(types.AUTH_PENDING, true)
         commit(types.AUTH_TOKEN, state.token)
         return dispatch("validate")
     },
@@ -17,6 +18,8 @@ export default {
 
         const user = response.data.user
         commit(types.AUTH_USER, user)
+
+        commit(types.AUTH_PENDING, false)
 
         return response
     },
@@ -38,6 +41,8 @@ export default {
         deleteSavedState("auth.token")
         deleteSavedState("auth.user")
 
+        commit(types.AUTH_PENDING, false)
+
         return dispatch("reset")
     },
 
@@ -53,18 +58,14 @@ export default {
             .then(response => {
                 const user = response.data.data.user
                 commit(types.AUTH_USER, user)
+                commit(types.AUTH_PENDING, false)
                 return user
             })
             .catch(error => {
                 dispatch("logout")
 
-                if (undefined !== error.response) {
-                    let data = error.response.data
-                    commit(types.AUTH_ERROR, data)
-                    return data
-                }
-
-                commit(types.AUTH_ERROR, error)
+                commit(types.AUTH_ERROR, error.message || error)
+                commit(types.AUTH_PENDING, false)
                 return error
             })
     },

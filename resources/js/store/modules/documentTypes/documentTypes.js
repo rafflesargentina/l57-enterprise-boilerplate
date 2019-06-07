@@ -6,13 +6,13 @@ export function initialState()
 {
     return {
         all: [],
-        featured: [],
-        nonFeatured: [],
+        allPending: false,
         one: {
             description: "",
             name: "",
             slug: "",
         },
+        onePending: false,
     }
 }
 

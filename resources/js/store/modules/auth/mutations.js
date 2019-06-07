@@ -12,6 +12,10 @@ export default {
         Object.assign(state, { initialState: initialState(), ...initialState() })
     },
 
+    [types.AUTH_PENDING] (state, payload) {
+        state.authPending = payload
+    },
+
     [types.AUTH_TOKEN] (state, payload) {
         if (payload) {
             state.token = payload

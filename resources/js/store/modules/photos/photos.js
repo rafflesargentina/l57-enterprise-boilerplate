@@ -6,6 +6,7 @@ export function initialState()
 {
     return {
         all: [],
+        allPending: false,
         featured: [],
         nonFeatured: [],
         one: {
@@ -15,6 +16,7 @@ export function initialState()
             name: "",
             slug: "",
         },
+        onePending: false,
     }
 }
 

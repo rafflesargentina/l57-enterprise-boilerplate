@@ -16,29 +16,37 @@ export default {
     },
 
     fetchAllUsers ({ commit }, params) {
+        commit(types.USERS_FETCH_ALL_PENDING, true)
+
         return window.axios.get("/api/users", { params: params })
             .then(response => {
                 const all = response.data.data
                 commit(types.USERS_FETCH_ALL, all)
+                commit(types.USERS_FETCH_ALL_PENDING, false)
                 return all
             })
             .catch(error => {
                 commit(types.USERS_ERROR, error)
+                commit(types.USERS_FETCH_ALL_PENDING, false)
                 return error
             })
     },
 
     fetchOneUser ({ commit, dispatch }, id) {
+        commit(types.USERS_FETCH_ONE_PENDING, true)
+
         return window.axios.get("/api/users/" + id)
             .then(response => {
                 const one = response.data
                 commit(types.USERS_FETCH_ONE, one)
+                commit(types.USERS_FETCH_ONE_PENDING, false)
                 dispatch("mapOnePermissionTags", one)
                 dispatch("mapOneRoleTags", one)
                 return one
             })
             .catch(error => {
                 commit(types.USERS_ERROR, error)
+                commit(types.USERS_FETCH_ONE_PENDING, false)
                 return error
             })
     },

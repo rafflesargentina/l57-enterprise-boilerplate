@@ -5,6 +5,7 @@ import mutations from "./mutations"
 
 export function initialState() {
     return {
+        authPending: false,
         token: getSavedState("auth.token"),
         user: getSavedState("auth.user")
     }

@@ -16,29 +16,37 @@ export default {
     },
 
     fetchAllPhotos ({ commit, dispatch }, params) {
+        commit(types.PHOTOS_FETCH_ALL_PENDING, true)
+
         return window.axios.get("/api/photos", { params: params })
             .then(response => {
                 const all = response.data.data
                 commit(types.PHOTOS_FETCH_ALL, all)
+                commit(types.PHOTOS_FETCH_ALL_PENDING, false)
                 dispatch("mapPhotosFeatured", all)
                 dispatch("mapPhotosNonFeatured", all)
                 return all
             })
             .catch(error => {
                 commit(types.PHOTOS_ERROR, error)
+                commit(types.PHOTOS_FETCH_ALL_PENDING, false)
                 return error
             })
     },
 
     fetchOnePhoto ({ commit }, id) {
+        commit(types.PHOTOS_FETCH_ONE_PENDING, true)
+
         return window.axios.get("/api/photos/" + id)
             .then(response => {
                 const one = response.data
                 commit(types.PHOTOS_FETCH_ONE, one)
+                commit(types.PHOTOS_FETCH_ONE_PENDING, false)
                 return one
             })
             .catch(error => {
                 commit(types.PHOTOS_ERROR, error)
+                commit(types.PHOTOS_FETCH_ONE_PENDING, false)
                 return error
             })
     },
