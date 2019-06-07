@@ -31,7 +31,7 @@ class Company extends Model
      */
     public function address()
     {
-        return $this->morphOne(address::class, 'addressable');
+        return $this->morphOne(Address::class, 'addressable');
     }
 
     /**
@@ -72,6 +72,14 @@ class Company extends Model
     public function companyable()
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Get the company's map.
+     */
+    public function map()
+    {
+        return $this->morphOne(Map::class, 'mapable');
     }
 
     /**
