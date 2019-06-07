@@ -2,10 +2,23 @@
 
 namespace Raffles\Models;
 
+use Raffles\Models\Traits\MapTrait;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Map extends Model
 {
+    use MapTrait;
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'coordinates',
+    ];
+
     /**
      * The model's default values for attributes.
      *
