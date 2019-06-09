@@ -1,4 +1,6 @@
-<template />
+<template>
+  <div />
+</template>
 
 <script>
 export default {
@@ -13,7 +15,7 @@ export default {
                 .catch(error => console.error(error))
         },
 
-        login (data, provider) {
+        login (data) {
             return this.$store.dispatch("auth/login", data)
                 .then(response => {
                     let intended = this.$route.query.intended
