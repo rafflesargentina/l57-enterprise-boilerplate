@@ -132,6 +132,7 @@ textarea {
 </template>
 
 <script>
+import { alertErrorMessage, alertSuccessMessage } from "@/utilities/helpers"
 import Form from "@/utilities/Form"
 
 let fields = {
@@ -174,36 +175,18 @@ export default {
         submitForm() {
             this.submitted = true
 
-            this.$snotify.async("Procesando...", ()=> new Promise((resolve, reject) => {
-                this.form[this.method](this.action)
-                    .then(response => {
-                        resolve({
-                            body: "Tue mensaje fue enviado correctamente.",
-                            config: {
-                                closeOnClick: true,
-                                showProgressBar: true,
-                                timeout: 5000
-                            }
-                        })
+            this.form[this.method](this.action)
+                .then(response => {
+                    alertSuccessMessage("Contacto", "Tu mensaje fue enviado.")
+                    return this.$router.push({ path: response.redirect || "/" })
+                })
+                .catch(error => {
+                    if (error.status > 422) {
+                        alertErrorMessage(error.data.message || error.message)
+                    }
 
-                        return this.$router.push({ path: response.redirect })
-                    })
-                    .catch(error => {
-                        this.submitted = false
-
-                        let message = error.status > 422 ? error.data.message : "Ups..."
-
-                        return reject({
-                            body: message,
-                            config: {
-                                closeOnClick: true,
-                                showProgressBar: true,
-                                timeout: 2000
-                            }
-                        })
-                    })
-            })
-            )
+                    return this.submitted = false
+                })
         },
     },
 }

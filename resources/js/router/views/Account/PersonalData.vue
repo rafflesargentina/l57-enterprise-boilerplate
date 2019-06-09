@@ -250,7 +250,7 @@
 
 <script>
 import { authComputed } from "@/store/helpers"
-import { getSavedState, mapDzMockFile,  previewDzThumbnailFromFile } from "@/utilities/helpers"
+import { alertSuccessMessage, alertErrorMessage, getSavedState, mapDzMockFile,  previewDzThumbnailFromFile } from "@/utilities/helpers"
 import vue2Dropzone from "vue2-dropzone"
 import Form from "@/utilities/Form"
 
@@ -389,10 +389,10 @@ export default {
                 .then(()=> {
                     this.$store.dispatch("auth/validate")
 
-                    return this.$snotify.success("Los datos de tu cuenta fueron actualizados.")
+                    return alertSuccessMessage("Cuenta", "Los datos de tu cuenta fueron actualizados.")
                 }).catch(error => {
                     if (error.status > 422) {
-                        this.$snotify.error("Ocurrió un error con el siguiente mensaje: " + error.data.message)
+                        alertErrorMessage("Cuenta", error.data.message || error.message)
                     }
 
                     return this.submitted = false

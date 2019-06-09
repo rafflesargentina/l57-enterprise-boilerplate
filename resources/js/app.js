@@ -10,10 +10,10 @@ require("@/utilities/directives")
 
 import store from "@/store"
 import router from "@/router"
-import Snotify from "vue-snotify"
 import Vue from "vue"
+import VueSweetalert2 from "vue-sweetalert2"
 
-Vue.use(Snotify)
+Vue.use(VueSweetalert2)
 
 // Don't warn about using the dev version of Vue in development
 Vue.config.productionTip = process.env.NODE_ENV === "production"

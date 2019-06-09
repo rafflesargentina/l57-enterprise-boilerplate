@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import { alertErrorMessage, alertSuccessMessage } from "@/utilities/helpers"
 import Form from "@/utilities/Form"
 
 let fields = {
@@ -126,13 +127,14 @@ export default {
 
             this.form.post("/password/reset").then(response => {
                 this.form.reset()
-                this.$snotify.success(response.message)
+                alertSuccessMessage(response.message)
                 return this.$router.push({ path: response.redirect })
             }).catch(error => {
-                this.submitted = false
                 if (error.status > 422) {
-                    this.$snotify.error("Ocurrió un error con el siguiente mensaje: " + error.data.message)
+                    alertErrorMessage(error.data.message || error.message)
                 }
+
+                return this.submitted = false
             })
         },
     }
