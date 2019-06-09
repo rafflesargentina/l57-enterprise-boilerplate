@@ -8,6 +8,7 @@
 require("./bootstrap")
 require("@/utilities/directives")
 
+import { alertErrorMessage, alertInfoMessage } from "@/utilities/helpers"
 import store from "@/store"
 import router from "@/router"
 import Vue from "vue"
@@ -47,10 +48,10 @@ const app = new Vue({
                 if (code > 404 && code < 420) {
                     switch (code) {
                     case 419:
-                        this.$snotify.info("Tu sesión expiró. Por favor volvé a ingresar con tus credenciales.")
+                        alertInfoMessage("Tu sesión expiró. Por favor volvé a ingresar con tus credenciales.")
                         break
                     default:
-                        this.$snotify.error("Ocurrió un error inesperado en la sesión de tu usuario. Por favor volvé a ingresar con tus credenciales.")
+                        alertErrorMessage("Ocurrió un error inesperado en la sesión de tu usuario. Por favor volvé a ingresar con tus credenciales.")
                     }
                 }
 

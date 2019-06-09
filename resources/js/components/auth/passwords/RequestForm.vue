@@ -69,36 +69,17 @@ export default {
         request() {
             this.submitted = true
 
-            this.$snotify.async("Procesando...", ()=> new Promise((resolve, reject) => {
-                this.form.post("/password/email")
-                    .then(response => {
-                        resolve({
-                            body: "Tu solicitud de reestablecimiento de contraseña fue procesada.",
-                            config: {
-                                closeOnClick: true,
-                                showProgressBar: true,
-                                timeout: 5000
-                            }
-                        }) 
-                        return this.$router.push({ path: response.redirect })
-                    })
-                    .catch(error => {
-                        this.submitted = false
+            this.form.post("/password/email").then(response => {
+                alertSuccessMessage("Tu solicitud de reestablecimiento de contraseña fue procesada.")
+                return this.$router.push({ path: response.redirect || "/" })
+            }).catch(error => {
+                if (error.status > 422) {
+                    alertErrorMessage(error.data.message || error.message)
+                }
 
-                        let message = error.status > 422 ? error.data.message : "Ups..."
-
-                        return reject({
-                            body: message,
-                            config: {
-                                closeOnClick: true,
-                                showProgressBar: true,
-                                timeout: 2000,
-                            }
-                        })
-                    })
+                return this.submitted = false
             })
-            )
         }
-    },
+    }
 }
 </script>
