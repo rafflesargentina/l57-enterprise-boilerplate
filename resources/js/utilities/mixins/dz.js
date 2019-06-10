@@ -1,72 +1,150 @@
-import { mapDzMockFile, previewDzThumbnailFromFile, removeDzPreviewTemplate } from "@/utilities/helpers"
+import app from "@/app"
+import { alertDzUploadProgress, alertErrorMessage, alertSuccessMessage, mapDzMockFile, previewDzThumbnailFromFile, removeDzPreviewTemplate } from "@/utilities/helpers"
 
 export const dz = {
-    data() {
-        return {
-            dzFeaturedPhotoHasAcceptedFiles: false,
-            dzFeaturedPhotoHasError: false,
-            dzUnfeaturedPhotosHasAcceptedFiles: false,
-            dzUnfeaturedPhotosHasError: false,
-        }
-    },
-
     computed: {
+        dzDocuments() {
+            if (this.$refs.dzDocuments) {
+                return this.$refs.dzDocuments
+            }
+        },
+
         dzFeaturedPhoto() {
-            return this.$refs.dzFeaturedPhoto
+            if (this.$refs.dzFeaturedPhoto) {
+                return this.$refs.dzFeaturedPhoto
+            }
         },
 
         dzUnfeaturedPhotos() {
-            return this.$refs.dzUnfeaturedPhotos
+            if (this.$refs.dzUnfeaturedPhotos) {
+                return this.$refs.dzUnfeaturedPhotos
+            }
         },
     },
 
     methods: {
-        dzFeaturedPhotoAddOrRemoveFiles() {
-            return this.dzFeaturedPhotoHasAcceptedFiles = this.dzFeaturedPhoto.getAcceptedFiles().length > 0
+        dzDocumentsError(file, message) {
+            this.submitted = false
+
+            return alertErrorMessage("Ups...", message.message || message)
+                .then(this.dzDocuments.removeFile(file))
         },
 
-        dzFeaturedPhotoRemoveFile(file) {
-            if (this.isDestroying === false && file.id) {
-                this.dzFeaturedPhotoAddOrRemoveFiles()
+        dzDocumentsMounted(documents) {
+            if (this.dzDocuments) {
+                removeDzPreviewTemplate(this.dzDocuments.dropzone)
+
+                if (documents) {
+                    documents.forEach(document => {
+                        return previewDzThumbnailFromFile(this.dzDocuments.dropzone, mapDzMockFile(document))
+                    })
+
+                    return documents
+                }
             }
         },
 
-        dzFeaturedPhotoFail() {
-            return this.dzFeaturedPhotoHasError = true
+        dzDocumentsRemovedFile(file) {
+            if (this.isDestroying === false && file.id) {
+                this.deleteOneDocument(file.id)
+            }
+        },
+
+        dzDocumentsProcessQueue() {
+            if (this.dzDocuments) {
+                if (this.dzDocuments.getQueuedFiles().length > 0) {
+                    return this.dzDocuments.processQueue()
+                }
+
+                return this.dzDocuments.$emit("vdropzone-success-multiple", "documents")
+            }
+        },
+
+        dzDocumentsProcessing(file) {
+            if (this.dzDocuments) {
+                this.dzDocuments.setOption("url", this.url)
+
+                return alertDzUploadProgress(file, "dz-documents-progress-bar")
+                    .then(result => {
+                        if (result.dismiss) {
+                            return this.dzDocuments.removeFile(file)
+                        }
+                    })
+            }
+        },
+
+        dzDocumentsUploadProgress(file, progress, bytesSent) {
+            var el = document.getElementById("dz-documents-progress-bar")
+            if (el) {
+                var percent = Math.round(progress)
+                el.innerHTML = percent + "%"
+                el.dataset.valuenow = percent
+                el.style.width = percent + "%"
+            }
+        },
+
+        dzFeaturedPhotoError(file, message) {
+            this.submitted = false 
+
+            return alertErrorMessage("Ups...", message.message || message)
+                .then(this.dzFeaturedPhoto.removeFile(file))
         },
 
         dzFeaturedPhotoMounted(featuredPhoto) {
             if (this.dzFeaturedPhoto) {
-                removeDzPreviewTemplate(this.dzFeaturedPhoto.dropzone)
                 if (featuredPhoto) {
-                    return previewDzThumbnailFromFile(this.dzFeaturedPhoto.dropzone, mapDzMockFile(featuredPhoto))
+                    removeDzPreviewTemplate(this.dzFeaturedPhoto.dropzone)
+                    previewDzThumbnailFromFile(this.dzFeaturedPhoto.dropzone, mapDzMockFile(featuredPhoto))
+
+                    return featuredPhoto
                 }
+            }
+        },
+
+        dzFeaturedPhotoProcessing(file) {
+            if (this.dzFeaturedPhoto) {
+                this.dzFeaturedPhoto.setOption("url", this.url)
+
+                return alertDzUploadProgress(file, "dz-featured-photo-progress-bar")
+                    .then(result => {
+                        if (result.dismiss) {
+                            return this.dzFeaturedPhoto.removeFile(file)
+                        }
+                    })
             }
         },
 
         dzFeaturedPhotoProcessQueue() {
             if (this.dzFeaturedPhoto) {
-                this.dzFeaturedPhotoHasError = false
-                return Promise.resolve(this.dzFeaturedPhoto.processQueue())
+                if (this.dzFeaturedPhoto.getQueuedFiles().length > 0) {
+                    return this.dzFeaturedPhoto.processQueue()
+                }
+
+                return this.dzFeaturedPhoto.$emit("vdropzone-success-multiple", "featured_photo")
             }
         },
 
-        dzFeaturedPhotoSetUrl() {
-            if (this.dzFeaturedPhoto) {
-                return this.dzFeaturedPhoto.setOption("url", this.url)
+        dzFeaturedPhotoRemovedFile(file) {
+            if (this.isDestroying === false && file.id) {
+                this.deleteOnePhoto(file.id)
             }
         },
 
-        dzFeaturedPhotoSucceed(file, response) {
-            return Promise.resolve([file, response])
+        dzFeaturedPhotoUploadProgress(file, progress, bytesSent) {
+            var el = document.getElementById("dz-featured-photo-progress-bar")
+            if (el) {
+                var percent = Math.round(progress)
+                el.innerHTML = percent + "%"
+                el.dataset.valuenow = percent
+                el.style.width = percent + "%"
+            }
         },
 
-        dzUnfeaturedPhotosAddOrRemoveFiles() {
-            return this.dzUnfeaturedPhotosHasAcceptedFiles = this.dzUnfeaturedPhotos.getAcceptedFiles().length > 0
-        },
+        dzUnfeaturedPhotosError(file, message) {
+            this.submitted = false
 
-        dzUnfeaturedPhotosFail() {
-            return this.dzUnfeaturedPhotosHasError = true
+            return alertErrorMessage("Ups...", message.message || message)
+                .then(this.dzUnfeaturedPhotos.removeFile(file))
         },
 
         dzUnfeaturedPhotosMounted(unfeaturedPhotos) {
@@ -74,35 +152,52 @@ export const dz = {
                 removeDzPreviewTemplate(this.dzUnfeaturedPhotos.dropzone)
 
                 if (unfeaturedPhotos) {
-                    return unfeaturedPhotos.forEach(unfeaturedPhoto => {
+                    unfeaturedPhotos.forEach(unfeaturedPhoto => {
                         return previewDzThumbnailFromFile(this.dzUnfeaturedPhotos.dropzone, mapDzMockFile(unfeaturedPhoto))
                     })
+
+                    return unfeaturedPhotos
                 }
             }
         },
 
         dzUnfeaturedPhotosProcessQueue() {
             if (this.dzUnfeaturedPhotos) {
-                this.dzUnfeaturedPhotosHasError = false
-                return Promise.resolve(this.dzUnfeaturedPhotos.processQueue())
+                if (this.dzUnfeaturedPhotos.getQueuedFiles().length > 0) {
+                    return this.dzUnfeaturedPhotos.processQueue()
+                }
+
+                return this.dzUnfeaturedPhotos.$emit("vdropzone-success-multiple", "unfeatured_photos")
             }
         },
 
-        dzUnfeaturedPhotosRemoveFile(file) {
+        dzUnfeaturedPhotosRemovedFile(file) {
             if (this.isDestroying === false && file.id) {
                 this.deleteOnePhoto(file.id)
-                this.dzUnfeaturedPhotosAddOrRemoveFiles()
             }
         },
 
-        dzUnfeaturedPhotosSetUrl() {
+        dzUnfeaturedPhotosProcessing(file) {
             if (this.dzUnfeaturedPhotos) {
-                return this.dzUnfeaturedPhotos.setOption("url", this.url)
+                this.dzUnfeaturedPhotos.setOption("url", this.url)
+
+                return alertDzUploadProgress(file, "dz-unfeatured-photos-progress-bar")
+                    .then(result => {
+                        if (result.dismiss) {
+                            return this.dzFeaturedPhoto.removeFile(file)
+                        }
+                    })
             }
         },
 
-        dzUnfeaturedPhotosSucceed(file, response) {
-            return Promise.resolve([file, response])
-        }
+        dzUnfeaturedPhotosUploadProgress(file, progress, bytesSent) {
+            var el = document.getElementById("dz-unfeatured-photos-progress-bar")
+            if (el) {
+                var percent = Math.round(progress)
+                el.innerHTML = percent + "%"
+                el.dataset.valuenow = percent
+                el.style.width = percent + "%"
+            }
+        },
     }
 }
