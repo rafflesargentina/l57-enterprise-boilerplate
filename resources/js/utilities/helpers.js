@@ -189,5 +189,5 @@ export function slugify(text) {
 }
 
 export function strLimit(value = "", limit = 30, end = "...") {
-    return null !== value && value.length > limit ? value.substr(0, (limit - value.length)) + end : value
+    return null !== value && value.length > limit ? value.substr(0, (limit - end.length)) + end : value
 }
