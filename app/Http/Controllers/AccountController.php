@@ -19,8 +19,12 @@ class AccountController extends Controller
      */
     public function __invoke(Request $request)
     {
-        abort_if(!$request->user(), 401);
+        $user = $request->user();
 
-        return $this->validSuccessJsonResponse('Success', ['user' => $request->user()]);
+        abort_if(!$user, 401);
+
+        $user->load('permissions', 'roles');
+
+        return $this->validSuccessJsonResponse('Success', ['user' => $user]);
     }
 }
