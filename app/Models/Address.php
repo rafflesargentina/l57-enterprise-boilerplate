@@ -39,14 +39,12 @@ class Address extends Model
         'zip',
     ];
 
-
     /**
-     * The table associated with the model.
+     * The relations to eager load on every query.
      *
-     * @var string
+     * @var array
      */
-    protected $table = 'addresses';
-
+    protected $with = 'map';
 
     /**
      * Get all of the owning addressable models.
@@ -54,5 +52,13 @@ class Address extends Model
     public function addressable()
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Get the address's map.
+     */
+    public function map()
+    {
+        return $this->morphOne(Map::class, 'mapable');
     }
 }
