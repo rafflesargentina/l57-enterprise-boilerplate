@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { alertErrorMessage, alertSuccessMessage } from "@/utilities/helpers"
 import Form from "../../../utilities/Form"
 
 let fields = {
@@ -70,7 +71,7 @@ export default {
             this.submitted = true
 
             this.form.post("/password/email").then(response => {
-                alertSuccessMessage("Tu solicitud de reestablecimiento de contraseña fue procesada.")
+                alertSuccessMessage(response.message)
                 return this.$router.push({ path: response.redirect || "/" })
             }).catch(error => {
                 if (error.status > 422) {
