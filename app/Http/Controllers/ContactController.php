@@ -37,7 +37,7 @@ class ContactController extends Controller
         );
 
         try {
-            Mail::to($request->email)->send(new ContactMessage($request->all()));
+            Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactMessage($request->all()));
         }  catch(\Exception $e) {
             return $this->validInternalServerErrorJsonResponse($e, $e->getMessage());
         }
