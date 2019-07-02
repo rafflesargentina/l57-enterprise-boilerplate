@@ -25,12 +25,14 @@ export default {
     },
 
     logout ({ commit, dispatch }) {
+        var redirect
         axios.post("/logout")
             .then(response => {
-                return router.push({ path: response.data.redirect })
+                redirect = response.data.redirect || "/"
+                return window.location.href = redirect
             })
             .catch(error => {
-                router.push({ path: "/" })
+                router.push({ path: redirect })
 
                 let data = error.response.data
                 commit(types.AUTH_ERROR, data)
