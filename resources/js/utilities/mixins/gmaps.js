@@ -3,6 +3,7 @@ export const gmaps = {
     data() {
         return {
             autocomplete: null,
+            bounds: [],
             circle: null,
             pickedAddressComponents: {
                 street_number: ["street_number", "short_name"],
@@ -17,6 +18,7 @@ export const gmaps = {
             infowindow: null,
             map: null,
             marker: null,
+            markers: [],
             place: null,
         }
     },
@@ -64,6 +66,18 @@ export const gmaps = {
             })
         },
 
+        fitBoundsToVisibleMarkers() {
+            this.bounds = new window.google.maps.LatLngBounds()
+
+            for (var i=0; i < this.markers.length; i++) {
+                if(this.markers[i].getVisible()) {
+                    this.bounds.extend( this.markers[i].getPosition() )
+                }
+            }
+
+            this.map.fitBounds(this.bounds)
+        },
+
         geolocate() {
             return new Promise((resolve, reject)=> {
                 return navigator.geolocation.getCurrentPosition((position, error) => {
@@ -109,11 +123,13 @@ export const gmaps = {
         initMap(el, options) {
             this.map = this.makeMap(el, options)
 
-            this.map.addListener("zoom_changed", ()=> {
+            if (this.form) {
                 if (this.form.map) {
-                    this.form.map.zoom = this.map.getZoom()
+                    this.map.addListener("zoom_changed", ()=> {
+                        this.form.map.zoom = this.map.getZoom()
+                    })
                 }
-            })
+            }
 
             var markerOptions = {
                 draggable: true,
@@ -172,7 +188,9 @@ export const gmaps = {
         },
 
         makeMarker(options) {
-            return new window.google.maps.Marker(options)
+            var marker = new window.google.maps.Marker(options)
+            this.markers.push(marker)
+            return marker
         },
 
         updateFormMapCoordinates(coordinates) {
