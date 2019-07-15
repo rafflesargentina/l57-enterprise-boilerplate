@@ -63,7 +63,7 @@ export function alertInfoMessage(title, text) {
     return app.$swal({
         text: text,
         title: title,
-        type: "error",
+        type: "info",
     })
 }
 
@@ -72,6 +72,14 @@ export function alertSuccessMessage(title, message) {
         text: message,
         title: title,
         type: "success",
+    })
+}
+
+export function alertWarningMessage(title, text) {
+    return app.$swal({
+        text: text,
+        title: title,
+        type: "warning",
     })
 }
 
