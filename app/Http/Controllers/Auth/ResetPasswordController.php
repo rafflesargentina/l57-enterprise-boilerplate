@@ -6,6 +6,7 @@ use Raffles\Http\Controllers\Controller;
 
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
@@ -52,7 +53,7 @@ class ResetPasswordController extends Controller
      */
     protected function resetPassword($user, $password)
     {
-        $user->password = Hash::make($password);
+        $user->password = $password;
 
         $user->setRememberToken(Str::random(60));
 
@@ -68,12 +69,13 @@ class ResetPasswordController extends Controller
     /**
      * Get the response for a successful password reset.
      *
-     * @param  string $response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    protected function sendResetResponse($response)
+    protected function sendResetResponse(Request $request, $response)
     {
-        if (request()->wantsJson()) {
+        if ($request->wantsJson()) {
             return $this->validSuccessJsonResponse(trans($response), [], $this->redirectPath());
         }
 
