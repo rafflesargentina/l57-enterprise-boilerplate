@@ -37,6 +37,7 @@
     "laravel-echo": "^1.5.1",
     "laravel-mix": "^2.0",
     "lodash": "^4.17.5",
+    "moment": "^2.24.0",
     "popper.js": "^1.12",
     "sass-lint": "^1.12.1",
     "sass-lint-auto-fix": "^0.15.0",
