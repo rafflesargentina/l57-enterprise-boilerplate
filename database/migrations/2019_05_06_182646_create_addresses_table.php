@@ -26,6 +26,8 @@ class CreateAddressesTable extends Migration
             $table->string('locality')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
+            $table->float('lat', 11, 8)->nullable();
+            $table->float('lng', 11, 8)->nullable();
             $table->boolean('featured')->nullable()->default(0);
             $table->timestamps();
         });

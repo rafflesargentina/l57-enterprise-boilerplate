@@ -4,6 +4,16 @@ namespace Raffles\Models\Traits;
 
 trait AddressTrait {
     /**
+     * Get the map coordinates.
+     *
+     * @return string
+     */
+    public function getCoordinatesAttribute()
+    {
+        return $this->attributes['coordinates'] = ['lat' => $this->lat, 'lng' => $this->lng];
+    }
+
+    /**
      * Get the address's location.
      *
      * @return string

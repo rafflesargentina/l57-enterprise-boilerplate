@@ -10,6 +10,8 @@ $factory->define(Raffles\Models\Address::class, function (Faker $faker) {
         'door_number' => rand(1,25000),
         'featured' => rand(0,1),
         'floor_number' => rand(1,25),
+        'lat' => $faker->latitude,
+        'lng' => $faker->longitude,
         'locality' => $faker->city,
         'state' => $faker->state,
         'street_name' => $faker->streetName,

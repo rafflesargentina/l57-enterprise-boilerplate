@@ -31,6 +31,8 @@ class Address extends Model
         'door_number',
         'featured',
         'floor_number',
+        'lat',
+        'lng',
         'locality',
         'state',
         'street_name',
